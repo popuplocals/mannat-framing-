@@ -37,8 +37,8 @@ export default function Footer() {
               Mannat Framing Ltd. is a licensed framing contractor in Surrey, BC, delivering residential, multi-family and commercial framing across the Lower Mainland for over 10 years.
             </p>
             <div className="mt-[18px] text-[13px] leading-[1.8] text-concrete">
-              <div>(604) XXX-XXXX</div>
-              <div>info@mannatframing.ca</div>
+              <div><a href="tel:+17787238994" className="text-concrete transition-colors duration-300 ease-spring hover:text-gold">(778) 723-8994</a></div>
+              <div><a href="mailto:m.framing9@gmail.com" className="text-concrete transition-colors duration-300 ease-spring hover:text-gold">m.framing9@gmail.com</a></div>
               <div>Surrey, BC</div>
             </div>
           </div>

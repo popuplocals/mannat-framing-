@@ -11,8 +11,8 @@ export const metadata: Metadata = {
 };
 
 const details = [
-  { k: "PHONE", v: "(604) XXX-XXXX", href: "tel:+1604" },
-  { k: "EMAIL", v: "info@mannatframing.ca", href: "mailto:info@mannatframing.ca" },
+  { k: "PHONE", v: "(778) 723-8994", href: "tel:+17787238994" },
+  { k: "EMAIL", v: "m.framing9@gmail.com", href: "mailto:m.framing9@gmail.com" },
   { k: "LOCATION", v: "Surrey, BC" },
 ];
 

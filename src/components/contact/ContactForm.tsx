@@ -77,7 +77,7 @@ export default function ContactForm() {
                 <div>
                   <label htmlFor="cf-phone" className={labelCls}>PHONE NUMBER</label>
                   <div className="relative">
-                    <input id="cf-phone" name="phone" type="tel" required placeholder="(604) XXX-XXXX" autoComplete="tel" className={fieldCls} />
+                    <input id="cf-phone" name="phone" type="tel" required placeholder="(778) 000-0000" autoComplete="tel" className={fieldCls} />
                     <ValidCheck />
                   </div>
                 </div>

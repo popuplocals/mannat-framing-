@@ -11,9 +11,9 @@ const COMPANY = {
   address: "Surrey, British Columbia",
   lat: 49.1913,
   lng: -122.849,
-  phone: "(604) XXX-XXXX",
-  phoneRaw: "+1604",
-  email: "info@mannatframing.ca",
+  phone: "(778) 723-8994",
+  phoneRaw: "+17787238994",
+  email: "m.framing9@gmail.com",
 };
 
 const cities = ["Langley", "Burnaby", "Vancouver", "Coquitlam", "Delta", "Richmond", "Abbotsford", "Maple Ridge"];
