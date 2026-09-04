@@ -174,18 +174,18 @@ export default function Home() {
       </section>
 
       {/* PROCESS */}
-      <section className="bg-warm-white px-5 py-[100px] md:px-10">
+      <section className="bg-surface px-5 py-[100px] md:px-10">
         <div className="mx-auto max-w-[1440px]">
           <Reveal>
-            <span className="text-xs font-medium tracking-[2.5px] text-gold-dark">HOW WE WORK</span>
-            <h2 className="m-0 mb-[14px] mt-5 max-w-[600px] font-heading text-[32px] font-extrabold leading-[1.22] text-black">A Clear Process, Plan to Handover.</h2>
+            <span className="text-xs font-medium tracking-[2.5px] text-accent">HOW WE WORK</span>
+            <h2 className="m-0 mb-[14px] mt-5 max-w-[600px] font-heading text-[32px] font-extrabold leading-[1.22] text-ink">A Clear Process, Plan to Handover.</h2>
             <p className="m-0 mb-16 max-w-[520px] text-sm text-ink-2">Each engagement follows the same four phases so clients know what to expect at every stage.</p>
           </Reveal>
           <div className="relative grid grid-cols-1 gap-9 sm:grid-cols-2 sm:gap-7 lg:grid-cols-4">
             <div aria-hidden="true" className="absolute left-[6%] right-[6%] top-8 hidden h-px bg-[repeating-linear-gradient(90deg,#C5A46D_0_8px,transparent_8px_16px)] lg:block" />
             {steps.map((s, i) => (
               <Reveal key={s.t} index={i} className="group relative z-[1] text-center">
-                <div className="mx-auto mb-[18px] flex h-16 w-16 items-center justify-center rounded-full border border-gold/50 bg-warm-white transition-[border-color,transform,box-shadow] duration-[400ms] ease-spring group-hover:scale-110 group-hover:border-gold group-hover:shadow-card">
+                <div className="mx-auto mb-[18px] flex h-16 w-16 items-center justify-center rounded-full border border-gold/50 bg-surface transition-[border-color,transform,box-shadow] duration-[400ms] ease-spring group-hover:scale-110 group-hover:border-gold group-hover:shadow-card">
                   {s.icon}
                 </div>
                 <div className="mb-2 font-heading text-[13px] font-bold text-gold">0{i + 1}</div>

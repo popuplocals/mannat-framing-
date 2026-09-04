@@ -27,10 +27,10 @@ export default function ServicesAccordion() {
         viewport={viewportOnce}
         transition={{ duration: 0.6, ease: EASE }}
       >
-        <span className="text-xs font-medium tracking-[2.5px] text-gold-dark">WHAT WE DO</span>
-        <h2 className="m-0 mb-[18px] mt-5 font-heading text-[30px] font-extrabold leading-[1.22] text-black">High Quality Construction Services.</h2>
+        <span className="text-xs font-medium tracking-[2.5px] text-accent">WHAT WE DO</span>
+        <h2 className="m-0 mb-[18px] mt-5 font-heading text-[30px] font-extrabold leading-[1.22] text-ink">High Quality Construction Services.</h2>
         <p className="m-0 mb-[22px] text-sm leading-[1.7] text-ink-2">From framing and general construction to excavation and project management — all under one roof.</p>
-        <Link href="/services" className="group inline-flex items-center gap-1 text-sm font-medium text-black transition-[gap,color] duration-300 ease-spring hover:gap-2 hover:text-gold-dark active:gap-2">
+        <Link href="/services" className="group inline-flex items-center gap-1 text-sm font-medium text-ink transition-[gap,color] duration-300 ease-spring hover:gap-2 hover:text-accent active:gap-2">
           View All Services <span aria-hidden="true">&rarr;</span>
         </Link>
       </motion.div>
@@ -41,7 +41,7 @@ export default function ServicesAccordion() {
           return (
             <motion.div
               key={s.num}
-              className="border-b border-black/10 py-5"
+              className="border-b border-ink/10 py-5"
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={viewportOnce}
@@ -55,13 +55,13 @@ export default function ServicesAccordion() {
               >
                 <span className="flex items-baseline gap-5">
                   <span className="font-heading text-sm font-bold text-gold">{s.num}</span>
-                  <span className={`font-heading text-[17px] font-bold transition-[color,transform] duration-300 ease-spring group-hover:translate-x-1 ${open ? "text-black" : "text-black group-hover:text-gold-dark"}`}>
+                  <span className={`font-heading text-[17px] font-bold transition-[color,transform] duration-300 ease-spring group-hover:translate-x-1 ${open ? "text-ink" : "text-ink group-hover:text-accent"}`}>
                     {s.title}
                   </span>
                 </span>
                 <motion.span
                   aria-hidden="true"
-                  className="text-lg text-gold-dark"
+                  className="text-lg text-accent"
                   animate={{ rotate: open ? 45 : 0 }}
                   transition={{ duration: 0.35, ease: EASE }}
                 >

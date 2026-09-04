@@ -5,8 +5,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import { EASE } from "@/lib/motion";
 
 const fieldCls =
-  "peer w-full border border-black/[0.16] bg-warm-white px-[13px] py-[11px] pr-9 text-sm text-black outline-none transition-[border-color,box-shadow] duration-300 ease-spring placeholder:text-[#a8a49b] focus:border-gold focus:shadow-[0_0_0_3px_rgba(197,164,109,0.15)]";
-const labelCls = "mb-2 block text-[11px] font-medium tracking-[1.2px] text-gold-dark";
+  "peer w-full border border-ink/[0.16] bg-surface px-[13px] py-[11px] pr-9 text-sm text-ink outline-none transition-[border-color,box-shadow] duration-300 ease-spring placeholder:text-[#a8a49b] focus:border-gold focus:shadow-[0_0_0_3px_rgba(197,164,109,0.15)]";
+const labelCls = "mb-2 block text-[11px] font-medium tracking-[1.2px] text-accent";
 
 function ValidCheck() {
   return (
@@ -23,7 +23,7 @@ export default function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
 
   return (
-    <div className="w-full max-w-[520px] border border-gold/40 border-t-[3px] border-t-gold bg-white p-[36px_24px] shadow-[0_40px_70px_-30px_rgba(13,13,13,0.2)] sm:p-[48px_44px]">
+    <div className="w-full max-w-[520px] border border-gold/40 border-t-[3px] border-t-gold bg-surface-2 p-[36px_24px] shadow-[0_40px_70px_-30px_rgba(13,13,13,0.2)] sm:p-[48px_44px]">
       <AnimatePresence mode="wait" initial={false}>
         {submitted ? (
           <motion.div
@@ -44,7 +44,7 @@ export default function ContactForm() {
             >
               &#10003;
             </motion.span>
-            <h2 className="m-0 mb-3 font-heading text-2xl font-extrabold text-black">Request Received.</h2>
+            <h2 className="m-0 mb-3 font-heading text-2xl font-extrabold text-ink">Request Received.</h2>
             <p className="m-0 text-[15px] leading-[1.7] text-ink-2">Thanks for reaching out — we&rsquo;ll get back to you within one business day.</p>
           </motion.div>
         ) : (
@@ -57,7 +57,7 @@ export default function ContactForm() {
           >
             <div className="mb-7 flex items-center gap-3">
               <span className="h-px w-5 bg-gold" />
-              <span className="text-[11px] font-medium tracking-[2.2px] text-gold-dark">SEND A MESSAGE</span>
+              <span className="text-[11px] font-medium tracking-[2.2px] text-accent">SEND A MESSAGE</span>
             </div>
             <form
               className="flex flex-col gap-5"
@@ -101,7 +101,7 @@ export default function ContactForm() {
                     <option>Pre-Construction</option>
                     <option>Concrete Forming</option>
                   </select>
-                  <span aria-hidden="true" className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-xs text-gold-dark">&#9662;</span>
+                  <span aria-hidden="true" className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-xs text-accent">&#9662;</span>
                 </div>
               </div>
               <div>

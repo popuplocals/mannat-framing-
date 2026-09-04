@@ -29,11 +29,11 @@ function PopCard({ number, delay, children }: { number: string; delay: number; c
       whileHover={{ scale: 1.02, x: 4 }}
       whileTap={{ scale: 1.02 }}
       transition={{ duration: 0.35, ease: EASE }}
-      className="group relative border border-black/[0.08] border-t-2 border-t-gold/70 bg-white/90 px-[22px] py-[18px] shadow-[0_2px_8px_rgba(13,13,13,0.04)] backdrop-blur-[16px] transition-[background-color,border-color,box-shadow] duration-500 ease-spring hover:border-gold/40 hover:border-t-gold hover:bg-white/[0.98] hover:shadow-card"
+      className="group relative border border-ink/[0.08] border-t-2 border-t-gold/70 bg-surface-2/90 px-[22px] py-[18px] shadow-[0_2px_8px_rgba(13,13,13,0.04)] backdrop-blur-[16px] transition-[background-color,border-color,box-shadow] duration-500 ease-spring hover:border-gold/40 hover:border-t-gold hover:bg-surface-2/[0.98] hover:shadow-card"
     >
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute right-3.5 top-2.5 select-none font-heading text-[32px] font-extrabold leading-none text-gold-dark/[0.06] transition-colors duration-[400ms] ease-spring group-hover:text-gold-dark/[0.16]"
+        className="pointer-events-none absolute right-3.5 top-2.5 select-none font-heading text-[32px] font-extrabold leading-none text-accent/[0.06] transition-colors duration-[400ms] ease-spring group-hover:text-accent/[0.16]"
       >
         {number}
       </span>
@@ -45,7 +45,7 @@ function PopCard({ number, delay, children }: { number: string; delay: number; c
 /* Circle icon that floods gold (icon turns black) when the card is hovered/tapped */
 function IconCircle({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gold/[0.12] text-gold-dark transition-all duration-[400ms] ease-spring group-hover:bg-gold group-hover:text-black group-hover:shadow-[0_4px_14px_rgba(197,164,109,0.45)] group-active:bg-gold group-active:text-black">
+    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gold/[0.12] text-accent transition-all duration-[400ms] ease-spring group-hover:bg-gold group-hover:text-black group-hover:shadow-[0_4px_14px_rgba(197,164,109,0.45)] group-active:bg-gold group-active:text-black">
       {children}
     </div>
   );
@@ -69,30 +69,30 @@ export default function ContactMap() {
   const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${COMPANY.lat},${COMPANY.lng}`;
 
   return (
-    <section className="relative overflow-hidden bg-warm-white">
+    <section className="relative overflow-hidden bg-surface">
       {/* the map IS the section — everything else floats above it */}
       <iframe
         title={`${COMPANY.name} location map`}
         src={mapSrc}
-        className="absolute inset-0 h-full w-full border-0 grayscale-[0.35] sepia-[0.12]"
+        className="mf-map absolute inset-0 h-full w-full border-0"
         loading="lazy"
         referrerPolicy="no-referrer-when-downgrade"
       />
       {/* readability wash — heavier on the left where the cards live */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-gradient-to-r from-warm-white via-warm-white/85 to-warm-white/40 lg:via-warm-white/45 lg:to-transparent"
+        className="pointer-events-none absolute inset-0 bg-gradient-to-r from-surface via-surface/85 to-surface/40 lg:via-surface/45 lg:to-transparent"
       />
       {/* name chip floating above the map pin (the embed renders its pin at the centre) */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute left-1/2 top-1/2 z-[1] hidden -translate-x-1/2 -translate-y-[calc(100%+34px)] flex-col items-center md:flex"
       >
-        <div className="border border-black/10 border-t-2 border-t-gold bg-white/95 px-4 py-2.5 text-center shadow-lift backdrop-blur-sm">
-          <p className="m-0 font-heading text-sm font-extrabold leading-tight text-black">{COMPANY.name}</p>
-          <p className="m-0 mt-0.5 text-[11px] font-semibold tracking-[1px] text-gold-dark">SURREY, BC</p>
+        <div className="border border-ink/10 border-t-2 border-t-gold bg-surface-2/95 px-4 py-2.5 text-center shadow-lift backdrop-blur-sm">
+          <p className="m-0 font-heading text-sm font-extrabold leading-tight text-ink">{COMPANY.name}</p>
+          <p className="m-0 mt-0.5 text-[11px] font-semibold tracking-[1px] text-accent">SURREY, BC</p>
         </div>
-        <div className="-mt-1.5 h-3 w-3 rotate-45 border-b border-r border-black/10 bg-white/95" />
+        <div className="-mt-1.5 h-3 w-3 rotate-45 border-b border-r border-ink/10 bg-surface-2/95" />
       </div>
 
       <div className="relative mx-auto max-w-[1440px] px-5 py-20 md:px-10 md:py-28">
@@ -103,8 +103,8 @@ export default function ContactMap() {
             viewport={{ once: true, amount: 0.1 }}
             className="mb-1.5"
           >
-            <span className="inline-block bg-gold/20 px-4 py-1.5 text-xs font-semibold uppercase tracking-[3px] text-black">Visit Us</span>
-            <h1 className="m-0 mt-4 font-heading text-[clamp(32px,4.2vw,46px)] font-extrabold leading-[1.08] text-black">
+            <span className="inline-block bg-gold/20 px-4 py-1.5 text-xs font-semibold uppercase tracking-[3px] text-ink">Visit Us</span>
+            <h1 className="m-0 mt-4 font-heading text-[clamp(32px,4.2vw,46px)] font-extrabold leading-[1.08] text-ink">
               Finding us is the easy part.
             </h1>
             <p className="m-0 mt-3 text-base leading-[1.7] text-ink-2">
@@ -116,13 +116,13 @@ export default function ContactMap() {
             <div className="flex gap-4">
               <IconCircle><PinIcon /></IconCircle>
               <div>
-                <p className="m-0 mb-1 font-heading text-sm font-bold text-black">{COMPANY.name}</p>
+                <p className="m-0 mb-1 font-heading text-sm font-bold text-ink">{COMPANY.name}</p>
                 <p className="m-0 text-xs leading-[1.6] text-ink-2">{COMPANY.address}</p>
                 <a
                   href={directionsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-2 inline-flex items-center gap-1 text-xs font-semibold text-gold-dark transition-[gap,color] duration-300 ease-spring hover:text-black group-hover:gap-2"
+                  className="mt-2 inline-flex items-center gap-1 text-xs font-semibold text-accent transition-[gap,color] duration-300 ease-spring hover:text-ink group-hover:gap-2"
                 >
                   Get Directions <span aria-hidden="true">&rarr;</span>
                 </a>
@@ -134,13 +134,13 @@ export default function ContactMap() {
             <div className="flex gap-4">
               <IconCircle><CompassIcon /></IconCircle>
               <div>
-                <p className="m-0 mb-1 font-heading text-sm font-bold text-black">We come to your site</p>
+                <p className="m-0 mb-1 font-heading text-sm font-bold text-ink">We come to your site</p>
                 <p className="m-0 text-xs leading-[1.6] text-ink-2">
                   Surrey, {cities.join(", ")} and across Greater Vancouver.
                 </p>
                 <Link
                   href="/about#where-we-work"
-                  className="mt-2 inline-flex items-center gap-1 text-xs font-semibold text-gold-dark transition-[gap,color] duration-300 ease-spring hover:text-black group-hover:gap-2"
+                  className="mt-2 inline-flex items-center gap-1 text-xs font-semibold text-accent transition-[gap,color] duration-300 ease-spring hover:text-ink group-hover:gap-2"
                 >
                   Full service area <span aria-hidden="true">&rarr;</span>
                 </Link>
@@ -152,18 +152,18 @@ export default function ContactMap() {
             <div className="flex gap-4">
               <IconCircle><PhoneIcon /></IconCircle>
               <div>
-                <p className="m-0 mb-1 font-heading text-sm font-bold text-black">Rather talk to someone first?</p>
-                <a href={`tel:${COMPANY.phoneRaw}`} className="inline-flex items-center gap-1.5 text-xs font-semibold text-gold-dark transition-colors duration-300 hover:text-black">
+                <p className="m-0 mb-1 font-heading text-sm font-bold text-ink">Rather talk to someone first?</p>
+                <a href={`tel:${COMPANY.phoneRaw}`} className="inline-flex items-center gap-1.5 text-xs font-semibold text-accent transition-colors duration-300 hover:text-ink">
                   <PhoneIcon size={12} /> {COMPANY.phone}
                 </a>
                 <br />
-                <a href={`mailto:${COMPANY.email}`} className="mt-1.5 inline-flex items-center gap-1.5 text-xs leading-[1.6] text-ink-2 transition-colors duration-300 hover:text-gold-dark">
+                <a href={`mailto:${COMPANY.email}`} className="mt-1.5 inline-flex items-center gap-1.5 text-xs leading-[1.6] text-ink-2 transition-colors duration-300 hover:text-accent">
                   <MailIcon /> {COMPANY.email}
                 </a>
                 <br />
                 <a
                   href="#form"
-                  className="mt-2 inline-flex items-center gap-1 text-xs font-semibold text-gold-dark transition-[gap,color] duration-300 ease-spring hover:text-black group-hover:gap-2"
+                  className="mt-2 inline-flex items-center gap-1 text-xs font-semibold text-accent transition-[gap,color] duration-300 ease-spring hover:text-ink group-hover:gap-2"
                 >
                   Request a free quote <span aria-hidden="true">&rarr;</span>
                 </a>

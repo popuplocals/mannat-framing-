@@ -41,7 +41,7 @@ export default function ProjectsGallery() {
   return (
     <LayoutGroup>
       {/* FILTER BAR */}
-      <div className="z-10 border-b border-black/[0.08] bg-warm-white/95 backdrop-blur-md md:sticky md:top-[68px]">
+      <div className="z-10 border-b border-ink/[0.08] bg-surface/95 backdrop-blur-md md:sticky md:top-[68px]">
         <div className="mx-auto flex max-w-[1440px] flex-wrap gap-x-9 px-5 md:px-10">
           {filters.map((f) => {
             const isActive = f === active;
@@ -51,8 +51,8 @@ export default function ProjectsGallery() {
                 type="button"
                 onClick={() => setActive(f)}
                 aria-pressed={isActive}
-                className={`relative cursor-pointer border-0 bg-transparent py-5 font-heading text-[13px] font-semibold tracking-[0.4px] transition-[color,transform] duration-300 ease-spring hover:-translate-y-0.5 hover:text-black active:-translate-y-0.5 ${
-                  isActive ? "text-black" : "text-[#8a8a82]"
+                className={`relative cursor-pointer border-0 bg-transparent py-5 font-heading text-[13px] font-semibold tracking-[0.4px] transition-[color,transform] duration-300 ease-spring hover:-translate-y-0.5 hover:text-ink active:-translate-y-0.5 ${
+                  isActive ? "text-ink" : "text-[#8a8a82]"
                 }`}
               >
                 {f}

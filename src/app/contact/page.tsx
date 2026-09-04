@@ -45,7 +45,7 @@ export default function ContactPage() {
           <div className="flex max-w-[400px] flex-col gap-6 border-t border-gold/20 pt-9">
             {details.map((d, i) => (
               <Reveal key={d.k} index={i + 3} className="group flex items-baseline justify-between gap-4">
-                <span className="text-[11px] font-medium tracking-[1.5px] text-gold-dark">{d.k}</span>
+                <span className="text-[11px] font-medium tracking-[1.5px] text-accent">{d.k}</span>
                 {d.href ? (
                   <a href={d.href} className="text-[15px] text-warm-white transition-[color,transform] duration-300 ease-spring hover:translate-x-1 hover:text-gold active:text-gold">
                     {d.v}
@@ -59,7 +59,7 @@ export default function ContactPage() {
         </div>
 
         {/* RIGHT: floating form card */}
-        <div className="relative flex items-center justify-center bg-warm-white px-5 py-[70px] md:px-10 lg:px-14 lg:py-[90px]">
+        <div className="relative flex items-center justify-center bg-surface px-5 py-[70px] md:px-10 lg:px-14 lg:py-[90px]">
           <Reveal index={2} scale={0.96} y={30} className="flex w-full justify-center">
             <ContactForm />
           </Reveal>

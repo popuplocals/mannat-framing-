@@ -33,7 +33,16 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${manrope.variable} ${inter.variable} ${plexMono.variable} antialiased`}>
+    <html lang="en" className={`${manrope.variable} ${inter.variable} ${plexMono.variable} antialiased`} suppressHydrationWarning>
+      <head>
+        {/* Sets the theme class before first paint so there is no light/dark flash. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "(function(){try{var s=localStorage.getItem('mf-theme');var d=s?s==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;if(d){document.documentElement.classList.add('dark');}document.documentElement.style.colorScheme=d?'dark':'light';}catch(e){}})();",
+          }}
+        />
+      </head>
       <body className="min-h-screen flex flex-col">
         <MotionProvider>
           <SmoothScroll />

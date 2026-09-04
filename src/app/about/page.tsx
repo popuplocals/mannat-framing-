@@ -41,12 +41,12 @@ export default function AboutPage() {
         <Reveal
           index={1}
           y={40}
-          className="relative z-[2] -mt-[60px] ml-auto max-w-[640px] border border-gold/40 border-t-[3px] border-t-gold bg-warm-white p-[36px_24px] shadow-lift transition-[box-shadow,transform] duration-[450ms] ease-spring hover:-translate-y-1 hover:shadow-[0_40px_70px_-20px_rgba(13,13,13,0.35)] md:-mt-[100px] md:p-[52px_48px]"
+          className="relative z-[2] -mt-[60px] ml-auto max-w-[640px] border border-gold/40 border-t-[3px] border-t-gold bg-surface p-[36px_24px] shadow-lift transition-[box-shadow,transform] duration-[450ms] ease-spring hover:-translate-y-1 hover:shadow-[0_40px_70px_-20px_rgba(13,13,13,0.35)] md:-mt-[100px] md:p-[52px_48px]"
         >
-          <span className="text-xs font-medium tracking-[2.5px] text-gold-dark">OUR STORY</span>
+          <span className="text-xs font-medium tracking-[2.5px] text-accent">OUR STORY</span>
           <span className="float-right font-mono text-[10px] tracking-[0.5px] text-concrete">SEC. 02.1</span>
-          <h2 className="m-0 mb-6 mt-[18px] clear-both font-heading text-[28px] font-extrabold leading-[1.25] text-black">From a Framing Crew to a Full Construction Company.</h2>
-          <p className="m-0 mb-[22px] border-l-2 border-gold pl-[18px] font-heading text-[17px] font-bold leading-[1.5] text-black">
+          <h2 className="m-0 mb-6 mt-[18px] clear-both font-heading text-[28px] font-extrabold leading-[1.25] text-ink">From a Framing Crew to a Full Construction Company.</h2>
+          <p className="m-0 mb-[22px] border-l-2 border-gold pl-[18px] font-heading text-[17px] font-bold leading-[1.5] text-ink">
             Mannat Framing Ltd. was founded with a simple mission: deliver exceptional framing work that builders, developers, and homeowners in Surrey and across the Lower Mainland can rely on.
           </p>
           <p className="m-0 mb-[18px] text-[15px] leading-[1.8] text-ink-3">
@@ -92,11 +92,11 @@ export default function AboutPage() {
       {/* SERVICE AREA */}
       <section id="where-we-work" className="mx-auto max-w-[1440px] scroll-mt-24 px-5 py-[100px] text-center md:px-10 md:py-[140px]">
         <Reveal>
-          <span className="text-xs font-medium tracking-[2.5px] text-gold-dark">WHERE WE WORK</span>
+          <span className="text-xs font-medium tracking-[2.5px] text-accent">WHERE WE WORK</span>
           <p className="mx-auto mb-3 mt-5 max-w-[520px] text-[15px] leading-[1.7] text-ink-2">Based in Surrey, BC, we take on projects throughout Greater Vancouver and beyond.</p>
         </Reveal>
         <Reveal index={1} scale={0.92} y={0}>
-          <h2 className="m-0 mb-2 mt-6 font-heading text-[clamp(64px,11vw,180px)] font-extrabold leading-[0.95] tracking-[-2px] text-black">Surrey</h2>
+          <h2 className="m-0 mb-2 mt-6 font-heading text-[clamp(64px,11vw,180px)] font-extrabold leading-[0.95] tracking-[-2px] text-ink">Surrey</h2>
         </Reveal>
         <Reveal index={2}>
           <div className="mx-auto mb-12 h-[2px] w-[60px] bg-gold" />

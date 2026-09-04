@@ -25,7 +25,7 @@ export default function ServiceSection({ service, flip = false }: { service: Ser
       className={flip ? "lg:order-2" : ""}
     >
       <span className="mb-3 block font-heading text-[96px] font-extrabold leading-none text-gold/35">{service.num}</span>
-      <h2 className="m-0 mb-6 font-heading text-[32px] font-extrabold leading-[1.25] text-black">{service.title}</h2>
+      <h2 className="m-0 mb-6 font-heading text-[32px] font-extrabold leading-[1.25] text-ink">{service.title}</h2>
       {service.paragraphs.map((p, i) => (
         <p key={i} className={`m-0 text-base leading-[1.8] text-ink-3 ${i === service.paragraphs.length - 1 ? "mb-8" : "mb-5"}`}>
           {p}

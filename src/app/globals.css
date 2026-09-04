@@ -1,6 +1,9 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
+  /* Fixed brand palette — used by the deliberately dark sections in both modes */
   --color-black: #0D0D0D;
   --color-charcoal: #181818;
   --color-warm-white: #F5F3ED;
@@ -8,8 +11,14 @@
   --color-gold: #C5A46D;
   --color-gold-dark: #927545;
   --color-gold-pale: #E6D3AE;
+
+  /* Semantic tokens — these flip in dark mode (see .dark below) */
+  --color-surface: #F5F3ED;
+  --color-surface-2: #FFFFFF;
+  --color-ink: #0D0D0D;
   --color-ink-2: #5c5c5c;
   --color-ink-3: #3a3a3a;
+  --color-accent: #927545;
 
   --font-heading: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
   --font-body: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
@@ -45,11 +54,48 @@ html.lenis, html.lenis body {
   overflow: hidden;
 }
 
+/* Dark mode: light surfaces become deep warm greys; the black/charcoal brand sections stay as they are. */
+.dark {
+  --color-surface: #141412;
+  --color-surface-2: #1c1c1a;
+  --color-ink: #F5F3ED;
+  --color-ink-2: #b3b0a8;
+  --color-ink-3: #d3cfc6;
+  --color-accent: #C5A46D;
+}
+
+html {
+  color-scheme: light;
+}
+html.dark {
+  color-scheme: dark;
+}
+
 body {
-  background: var(--color-warm-white);
-  color: var(--color-black);
+  background: var(--color-surface);
+  color: var(--color-ink);
   font-family: var(--font-body);
   overflow-x: hidden;
+}
+
+/* Cross-fade surfaces and text when the theme switches (utilities with their own transition still win). */
+@layer base {
+  html.theme-switching body,
+  html.theme-switching [class*="bg-surface"],
+  html.theme-switching [class*="text-ink"],
+  html.theme-switching [class*="text-accent"],
+  html.theme-switching [class*="border-ink"] {
+    transition: background-color 0.45s cubic-bezier(0.23, 1, 0.32, 1), color 0.45s cubic-bezier(0.23, 1, 0.32, 1), border-color 0.45s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+}
+
+/* Map embed: keep it light in light mode, invert it into a dark basemap in dark mode. */
+.mf-map {
+  filter: grayscale(0.35) sepia(0.12);
+  transition: filter 0.45s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.dark .mf-map {
+  filter: grayscale(0.6) invert(0.92) hue-rotate(180deg) brightness(0.85) contrast(0.95);
 }
 
 @keyframes page-enter {
@@ -107,6 +153,12 @@ body {
 }
 .mf-imgph.on-light span {
   color: var(--color-ink-2);
+}
+.dark .mf-imgph.on-light {
+  background:
+    repeating-linear-gradient(45deg, rgba(197, 164, 109, 0.08) 0 10px, transparent 10px 20px),
+    #1a1a17;
+  border-color: rgba(197, 164, 109, 0.35);
 }
 
 @keyframes mf-preload-line {

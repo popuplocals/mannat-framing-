@@ -47,7 +47,7 @@ export default function PageHero({
   return (
     <section
       ref={ref}
-      className={`relative overflow-hidden px-5 md:px-10 pt-[130px] pb-[90px] ${dark ? "bg-black" : "bg-warm-white"}`}
+      className={`relative overflow-hidden px-5 md:px-10 pt-[130px] pb-[90px] ${dark ? "bg-black" : "bg-surface"}`}
     >
       {corner && (
         <>
@@ -66,7 +66,7 @@ export default function PageHero({
                     {c.label}
                   </Link>
                 ) : (
-                  <span className={dark ? "text-warm-white" : "text-black"}>{c.label}</span>
+                  <span className={dark ? "text-warm-white" : "text-ink"}>{c.label}</span>
                 )}
                 {i < breadcrumbs.length - 1 && <span className="text-gold">/</span>}
               </span>
@@ -85,7 +85,7 @@ export default function PageHero({
         )}
 
         <h1
-          className={`m-0 mb-6 max-w-[820px] font-heading text-[clamp(36px,5vw,58px)] font-extrabold leading-[1.1] ${dark ? "text-warm-white" : "text-black"}`}
+          className={`m-0 mb-6 max-w-[820px] font-heading text-[clamp(36px,5vw,58px)] font-extrabold leading-[1.1] ${dark ? "text-warm-white" : "text-ink"}`}
         >
           {words.map((w, i) => (
             <span

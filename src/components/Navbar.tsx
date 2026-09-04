@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { EASE } from "@/lib/motion";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const links = [
   { href: "/", label: "Home" },
@@ -57,8 +58,8 @@ export default function Navbar() {
         <div
           className={`pointer-events-auto relative mx-auto border transition-[height,max-width,margin,border-radius,background-color,box-shadow,border-color] duration-[450ms] ease-spring ${
             scrolled
-              ? "mt-3 h-14 max-w-[82rem] rounded-full border-black/10 bg-warm-white/85 shadow-[0_8px_32px_rgba(13,13,13,0.14)] backdrop-blur-[20px] backdrop-saturate-[1.3]"
-              : "mt-0 h-[76px] max-w-none rounded-none border-transparent border-b-black/[0.08] bg-warm-white"
+              ? "mt-3 h-14 max-w-[82rem] rounded-full border-ink/10 bg-surface/85 shadow-[0_8px_32px_rgba(13,13,13,0.14)] backdrop-blur-[20px] backdrop-saturate-[1.3]"
+              : "mt-0 h-[76px] max-w-none rounded-none border-transparent border-b-ink/[0.08] bg-surface"
           }`}
           style={{ willChange: "height, max-width, border-radius" }}
         >
@@ -68,18 +69,29 @@ export default function Navbar() {
             }`}
           >
             <Link href="/" className="group flex shrink-0 items-center gap-3">
+              {/* Navy/red mark on light surfaces; cream/red variant when the site is in dark mode */}
               <Image
                 src="/assets/icon-light.png"
                 alt="Mannat Framing Ltd. logo"
                 width={38}
                 height={40}
                 priority
-                className={`w-auto object-contain transition-[height,transform] duration-[450ms] ease-spring group-hover:scale-[1.04] ${
+                className={`w-auto object-contain transition-[height,transform] duration-[450ms] ease-spring group-hover:scale-[1.04] dark:hidden ${
+                  scrolled ? "h-7 md:h-8" : "h-[38px]"
+                }`}
+              />
+              <Image
+                src="/assets/icon-dark.png"
+                alt=""
+                aria-hidden="true"
+                width={38}
+                height={40}
+                className={`hidden w-auto object-contain transition-[height,transform] duration-[450ms] ease-spring group-hover:scale-[1.04] dark:block ${
                   scrolled ? "h-7 md:h-8" : "h-[38px]"
                 }`}
               />
               <span className="flex flex-col leading-[1.15]">
-                <span className="font-heading text-[15px] font-extrabold tracking-[0.5px] text-black">MANNAT FRAMING</span>
+                <span className="font-heading text-[15px] font-extrabold tracking-[0.5px] text-ink">MANNAT FRAMING</span>
                 <span
                   className={`overflow-hidden text-[11px] tracking-[0.3px] text-ink-2 transition-[max-height,opacity] duration-[450ms] ease-spring ${
                     scrolled ? "max-h-0 opacity-0" : "max-h-4 opacity-100"
@@ -98,7 +110,7 @@ export default function Navbar() {
                     key={l.href}
                     href={l.href}
                     className={`relative text-sm whitespace-nowrap transition-[color,transform] duration-300 ease-spring hover:-translate-y-0.5 active:-translate-y-0.5 after:absolute after:bottom-[-6px] after:left-0 after:h-px after:bg-gold after:transition-[width] after:duration-300 after:ease-spring after:content-[''] ${
-                      active ? "text-gold-dark after:w-full" : "text-black after:w-0 hover:after:w-full active:after:w-full"
+                      active ? "text-accent after:w-full" : "text-ink after:w-0 hover:after:w-full active:after:w-full"
                     }`}
                   >
                     {l.label}
@@ -107,10 +119,11 @@ export default function Navbar() {
               })}
             </div>
 
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 md:gap-3">
+              <ThemeToggle />
               <Link
                 href="/contact"
-                className={`whitespace-nowrap border border-gold text-xs tracking-[0.3px] text-black transition-[background-color,color,transform,border-radius,padding] duration-[450ms] ease-spring hover:scale-[1.03] hover:bg-gold active:scale-[0.98] active:bg-gold md:text-[13px] ${
+                className={`whitespace-nowrap border border-gold text-xs tracking-[0.3px] text-ink transition-[background-color,color,transform,border-radius,padding] duration-[450ms] ease-spring hover:scale-[1.03] hover:bg-gold hover:text-black active:scale-[0.98] active:bg-gold active:text-black md:text-[13px] ${
                   scrolled ? "rounded-full px-4 py-2 md:px-5 md:py-[9px]" : "rounded-none px-[14px] py-[9px] md:px-[22px] md:py-[11px]"
                 }`}
               >
@@ -122,7 +135,7 @@ export default function Navbar() {
                 aria-label={open ? "Close menu" : "Open menu"}
                 aria-expanded={open}
                 onClick={() => setOpen((v) => !v)}
-                className="flex h-10 w-10 items-center justify-center text-black transition-transform duration-300 ease-spring active:scale-90 md:hidden"
+                className="flex h-10 w-10 items-center justify-center text-ink transition-transform duration-300 ease-spring active:scale-90 md:hidden"
               >
                 <span className="relative block h-4 w-5">
                   <span className={`absolute left-0 top-0 h-[2px] w-5 bg-current transition-transform duration-300 ease-spring ${open ? "translate-y-[7px] rotate-45" : ""}`} />
@@ -140,7 +153,7 @@ export default function Navbar() {
                 animate={{ opacity: 1, height: "auto", y: 0 }}
                 exit={{ opacity: 0, height: 0, y: -6 }}
                 transition={{ duration: 0.35, ease: EASE }}
-                className={`absolute left-0 right-0 top-[calc(100%+10px)] overflow-hidden border border-black/10 bg-warm-white/95 shadow-lift backdrop-blur-xl md:hidden ${
+                className={`absolute left-0 right-0 top-[calc(100%+10px)] overflow-hidden border border-ink/10 bg-surface/95 shadow-lift backdrop-blur-xl md:hidden ${
                   scrolled ? "rounded-3xl" : "mx-3 rounded-3xl"
                 }`}
               >
@@ -157,7 +170,7 @@ export default function Navbar() {
                         <Link
                           href={l.href}
                           className={`block rounded-xl px-3 py-3 font-heading text-base font-bold transition-[background-color,color,transform] duration-300 ease-spring active:translate-x-1 active:bg-gold/10 ${
-                            active ? "bg-gold/10 text-gold-dark" : "text-black"
+                            active ? "bg-gold/10 text-accent" : "text-ink"
                           }`}
                         >
                           {l.label}

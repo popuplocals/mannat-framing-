@@ -63,7 +63,7 @@ export default function Footer() {
 
         <div className="flex flex-wrap justify-between gap-3 border-t border-gold/15 pt-6 text-[13px] text-ink-2">
           <span>&copy; 2026 Mannat Framing Ltd. All rights reserved. | Surrey, British Columbia</span>
-          <span className="text-gold-dark">Built in Surrey. Built to Last.</span>
+          <span className="text-accent">Built in Surrey. Built to Last.</span>
         </div>
       </div>
     </footer>
