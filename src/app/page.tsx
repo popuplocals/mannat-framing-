@@ -6,6 +6,7 @@ import CtaBand from "@/components/CtaBand";
 import Preloader from "@/components/Preloader";
 import ImagePlaceholder from "@/components/ImagePlaceholder";
 import ServicesAccordion from "@/components/home/ServicesAccordion";
+import { HeroFade, HeroParallax } from "@/components/home/HeroMotion";
 
 const stats = [
   { num: "10+", label: "Years in Business" },
@@ -59,15 +60,16 @@ export default function Home() {
 
       {/* HERO */}
       <section className="relative flex min-h-[92vh] items-center overflow-hidden bg-black">
-        <div className="absolute inset-0">
+        <HeroParallax>
           <Image src="/assets/hero-framing.jpg" alt="Timber framing under construction in Surrey, BC" fill priority sizes="100vw" className="object-cover" />
-        </div>
+        </HeroParallax>
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(95deg,#0D0D0D_28%,rgba(13,13,13,0.55)_55%,rgba(13,13,13,0.1)_100%)]" />
         <span className="absolute left-5 top-9 text-xs tracking-[1px] text-gold md:left-10">01</span>
         <span className="absolute bottom-[110px] left-5 top-10 w-px bg-gold/35 md:left-10" />
         <span className="absolute bottom-[110px] left-1 hidden rotate-180 text-[11px] tracking-[2px] text-concrete [writing-mode:vertical-rl] md:block md:left-4">FRAME / BUILD</span>
         <span className="absolute right-4 top-[110px] hidden text-[11px] tracking-[2px] text-concrete [writing-mode:vertical-rl] md:block md:right-9">SUR / BC</span>
 
+        <HeroFade>
         <div className="relative mx-auto w-full max-w-[1440px] px-5 md:px-10">
           <div className="max-w-[620px] py-24 md:pl-6">
             <Reveal index={0}>
@@ -103,6 +105,7 @@ export default function Home() {
             </Reveal>
           </div>
         </div>
+        </HeroFade>
 
         <div className="absolute bottom-[34px] left-0 right-0 flex flex-col items-center gap-2">
           <span className="text-[11px] tracking-[2px] text-concrete">SCROLL TO EXPLORE</span>

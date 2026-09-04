@@ -41,7 +41,7 @@ export default function ProjectsGallery() {
   return (
     <LayoutGroup>
       {/* FILTER BAR */}
-      <div className="z-10 border-b border-black/[0.08] bg-warm-white/95 backdrop-blur-md md:sticky md:top-[75px]">
+      <div className="z-10 border-b border-black/[0.08] bg-warm-white/95 backdrop-blur-md md:sticky md:top-[91px]">
         <div className="mx-auto flex max-w-[1440px] flex-wrap gap-x-9 px-5 md:px-10">
           {filters.map((f) => {
             const isActive = f === active;
@@ -89,7 +89,7 @@ export default function ProjectsGallery() {
                   <span className="absolute left-[18px] top-[18px] z-[2] bg-black/35 px-[10px] py-[5px] font-heading text-xs font-extrabold tracking-[1px] text-warm-white backdrop-blur-[6px]">
                     {p.num}
                   </span>
-                  <div className="absolute inset-0 transition-transform duration-[600ms] ease-spring group-hover:scale-[1.05]">
+                  <div className="absolute inset-0 transform-gpu will-change-transform transition-transform duration-[600ms] ease-spring group-hover:scale-[1.05]">
                     <ImagePlaceholder label={p.photo} />
                   </div>
                   <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,rgba(13,13,13,0.8)_0%,rgba(13,13,13,0)_40%)] transition-opacity duration-[450ms] ease-spring group-hover:opacity-90" />

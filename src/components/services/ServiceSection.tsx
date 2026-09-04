@@ -65,7 +65,7 @@ export default function ServiceSection({ service, flip = false }: { service: Ser
       transition={{ duration: 0.65, ease: EASE, delay: 0.1 }}
       className={`group h-[320px] overflow-hidden lg:h-[520px] ${flip ? "lg:order-1" : ""}`}
     >
-      <div className="h-full transition-transform duration-[700ms] ease-spring group-hover:scale-[1.04]">
+      <div className="h-full transform-gpu will-change-transform transition-transform duration-[700ms] ease-spring group-hover:scale-[1.04]">
         <ImagePlaceholder label={service.photoLabel} light />
       </div>
     </motion.div>
