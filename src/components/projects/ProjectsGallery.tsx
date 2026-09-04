@@ -41,7 +41,7 @@ export default function ProjectsGallery() {
   return (
     <LayoutGroup>
       {/* FILTER BAR */}
-      <div className="z-10 border-b border-black/[0.08] bg-warm-white/95 backdrop-blur-md md:sticky md:top-[91px]">
+      <div className="z-10 border-b border-black/[0.08] bg-warm-white/95 backdrop-blur-md md:sticky md:top-[68px]">
         <div className="mx-auto flex max-w-[1440px] flex-wrap gap-x-9 px-5 md:px-10">
           {filters.map((f) => {
             const isActive = f === active;
