@@ -60,7 +60,7 @@ export default function Home() {
       {/* HERO */}
       <section className="relative flex min-h-[92vh] items-center overflow-hidden bg-black">
         <div className="absolute inset-0">
-          <Image src="/assets/hero-framing.png" alt="Timber framing under construction in Surrey, BC" fill priority sizes="100vw" className="object-cover" />
+          <Image src="/assets/hero-framing.jpg" alt="Timber framing under construction in Surrey, BC" fill priority sizes="100vw" className="object-cover" />
         </div>
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(95deg,#0D0D0D_28%,rgba(13,13,13,0.55)_55%,rgba(13,13,13,0.1)_100%)]" />
         <span className="absolute left-5 top-9 text-xs tracking-[1px] text-gold md:left-10">01</span>
