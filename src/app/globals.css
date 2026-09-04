@@ -109,6 +109,20 @@ body {
   color: var(--color-ink-2);
 }
 
+@keyframes mf-preload-line {
+  from { width: 0; }
+  to { width: 64px; }
+}
+.mf-preload-line {
+  width: 64px;
+  animation: mf-preload-line 0.9s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+@keyframes mf-word-in {
+  from { opacity: 0; transform: translateY(20px) rotate(2deg); }
+  to { opacity: 1; transform: translateY(0) rotate(0deg); }
+}
+
 @keyframes mf-kenburns {
   0% { transform: scale(1.08) translate(0, 0); }
   100% { transform: scale(1.15) translate(-1.5%, -1%); }
