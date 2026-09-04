@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Reveal from "@/components/Reveal";
 import CtaBand from "@/components/CtaBand";
 import ContactForm from "@/components/contact/ContactForm";
+import ContactMap from "@/components/contact/ContactMap";
 
 export const metadata: Metadata = {
   title: "Get a Free Framing Quote | Mannat Framing Ltd. — Surrey, BC",
@@ -18,9 +19,13 @@ const details = [
 export default function ContactPage() {
   return (
     <>
-      <section className="grid grid-cols-1 lg:min-h-[92vh] lg:grid-cols-[0.85fr_1fr]">
+      {/* Map-backed "Visit Us" section */}
+      <ContactMap />
+
+      {/* Quote form */}
+      <section id="form" className="grid grid-cols-1 lg:grid-cols-[0.85fr_1fr]">
         {/* LEFT: dark editorial panel */}
-        <div className="relative flex flex-col justify-center overflow-hidden bg-black px-5 pb-[70px] pt-[120px] md:px-10 lg:pl-10 lg:pr-14 lg:pb-[90px] lg:pt-[150px]">
+        <div className="relative flex flex-col justify-center overflow-hidden bg-black px-5 pb-[70px] pt-[90px] md:px-10 lg:pl-10 lg:pr-14 lg:pb-[90px] lg:pt-[110px]">
           <span className="absolute left-5 top-9 text-xs tracking-[1px] text-gold md:left-10">06</span>
           <span className="absolute bottom-[280px] left-5 top-10 w-px bg-gold/35 md:left-10" />
           <div>
@@ -31,7 +36,7 @@ export default function ContactPage() {
               </div>
             </Reveal>
             <Reveal index={1}>
-              <h1 className="m-0 mb-7 max-w-[460px] font-heading text-[clamp(36px,5vw,58px)] font-extrabold leading-[1.08] text-warm-white">Get a Free Framing Quote.</h1>
+              <h2 className="m-0 mb-7 max-w-[460px] font-heading text-[clamp(36px,5vw,58px)] font-extrabold leading-[1.08] text-warm-white">Get a Free Framing Quote.</h2>
             </Reveal>
             <Reveal index={2}>
               <p className="m-0 mb-14 max-w-[400px] text-[15px] leading-[1.8] text-concrete">Tell us about your project and we&rsquo;ll get back to you within one business day.</p>
@@ -54,7 +59,7 @@ export default function ContactPage() {
         </div>
 
         {/* RIGHT: floating form card */}
-        <div id="form" className="relative flex items-center justify-center bg-warm-white px-5 py-[70px] md:px-10 lg:px-14 lg:py-[90px]">
+        <div className="relative flex items-center justify-center bg-warm-white px-5 py-[70px] md:px-10 lg:px-14 lg:py-[90px]">
           <Reveal index={2} scale={0.96} y={30} className="flex w-full justify-center">
             <ContactForm />
           </Reveal>

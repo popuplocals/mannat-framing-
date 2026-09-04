@@ -90,7 +90,7 @@ export default function AboutPage() {
       </section>
 
       {/* SERVICE AREA */}
-      <section className="mx-auto max-w-[1440px] px-5 py-[100px] text-center md:px-10 md:py-[140px]">
+      <section id="where-we-work" className="mx-auto max-w-[1440px] scroll-mt-24 px-5 py-[100px] text-center md:px-10 md:py-[140px]">
         <Reveal>
           <span className="text-xs font-medium tracking-[2.5px] text-gold-dark">WHERE WE WORK</span>
           <p className="mx-auto mb-3 mt-5 max-w-[520px] text-[15px] leading-[1.7] text-ink-2">Based in Surrey, BC, we take on projects throughout Greater Vancouver and beyond.</p>
