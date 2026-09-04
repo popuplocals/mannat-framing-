@@ -68,7 +68,7 @@ export default function Navbar() {
 
         <Link
           href="/contact"
-          className="text-[13px] tracking-[0.3px] whitespace-nowrap border border-gold px-[22px] py-[11px] text-black transition-[background-color,color,transform] duration-300 ease-spring hover:bg-gold hover:scale-[1.03] active:bg-gold active:scale-[0.98]"
+          className="text-xs md:text-[13px] tracking-[0.3px] whitespace-nowrap border border-gold px-[14px] py-[9px] md:px-[22px] md:py-[11px] text-black transition-[background-color,color,transform] duration-300 ease-spring hover:bg-gold hover:scale-[1.03] active:bg-gold active:scale-[0.98]"
         >
           Get a Free Quote &rarr;
         </Link>

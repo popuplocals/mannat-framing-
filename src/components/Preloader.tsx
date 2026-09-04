@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 /**
  * Brand splash shown once per session on first load of the homepage.
@@ -8,15 +8,24 @@ import { useEffect, useState } from "react";
  */
 export default function Preloader() {
   const [phase, setPhase] = useState<"hidden" | "shown" | "leaving">("hidden");
+  // Decided once per mount; survives React Strict Mode's double effect invocation.
+  const shouldShow = useRef<boolean | null>(null);
 
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    try {
-      if (sessionStorage.getItem("mf-preloaded")) return;
-      sessionStorage.setItem("mf-preloaded", "1");
-    } catch {
-      /* storage unavailable — just show once */
+    if (shouldShow.current === null) {
+      let show = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (show) {
+        try {
+          show = !sessionStorage.getItem("mf-preloaded");
+          if (show) sessionStorage.setItem("mf-preloaded", "1");
+        } catch {
+          /* storage unavailable — show once */
+        }
+      }
+      shouldShow.current = show;
     }
+    if (!shouldShow.current) return;
+
     setPhase("shown");
     const leave = setTimeout(() => setPhase("leaving"), 1300);
     const gone = setTimeout(() => setPhase("hidden"), 1300 + 500);
