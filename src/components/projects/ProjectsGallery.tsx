@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { AnimatePresence, LayoutGroup, motion } from "framer-motion";
 import { EASE } from "@/lib/motion";
-import ImagePlaceholder from "@/components/ImagePlaceholder";
+import Image from "next/image";
 
 type Category = "Residential" | "Multi-Family" | "Commercial" | "Framing";
 type Filter = "All" | Category;
@@ -13,7 +13,8 @@ type Project = {
   num: string;
   cat: Category;
   title: string;
-  photo: string;
+  photo: string; // alt text
+  src: string;
   span: string; // desktop grid placement
   size: "large" | "medium" | "small";
 };
@@ -21,15 +22,15 @@ type Project = {
 const filters: Filter[] = ["All", "Residential", "Multi-Family", "Commercial", "Framing"];
 
 const projects: Project[] = [
-  { id: "hero", num: "01", cat: "Residential", title: "Custom Home Framing", photo: "Drop a large residential framing project photo", span: "md:col-span-7 md:row-span-4", size: "large" },
-  { id: "vertical1", num: "02", cat: "Multi-Family", title: "Multi-Family Development", photo: "Drop a multi-family construction photo", span: "md:col-span-5 md:row-span-4", size: "medium" },
-  { id: "wide1", num: "03", cat: "Framing", title: "Structural Framing", photo: "Drop a wide framing / structural photo", span: "md:col-span-4 md:row-span-3", size: "small" },
-  { id: "detail1", num: "04", cat: "Framing", title: "Structural Detail", photo: "Drop a structural detail close-up photo", span: "md:col-span-4 md:row-span-3", size: "small" },
-  { id: "grid1", num: "05", cat: "Residential", title: "Concrete Forming", photo: "Drop a concrete forming photo", span: "md:col-span-4 md:row-span-3", size: "small" },
-  { id: "grid2", num: "06", cat: "Commercial", title: "Site Preparation", photo: "Drop an excavation / site prep photo", span: "md:col-span-6 md:row-span-3", size: "medium" },
-  { id: "grid3", num: "07", cat: "Commercial", title: "Commercial Build", photo: "Drop a commercial building project photo", span: "md:col-span-6 md:row-span-3", size: "medium" },
-  { id: "vertical2", num: "08", cat: "Multi-Family", title: "Townhouse Complex", photo: "Drop a townhouse framing photo", span: "md:col-span-5 md:row-span-4", size: "medium" },
-  { id: "wide2", num: "09", cat: "Residential", title: "Project Handover", photo: "Drop a completed project handover photo", span: "md:col-span-7 md:row-span-4", size: "large" },
+  { id: "hero", num: "01", cat: "Residential", title: "Custom Home Framing", photo: "Two-storey custom home fully framed", src: "/assets/photos/proj-custom-home.jpg", span: "md:col-span-7 md:row-span-4", size: "large" },
+  { id: "vertical1", num: "02", cat: "Multi-Family", title: "Multi-Family Development", photo: "Multi-family building with tower crane", src: "/assets/photos/svc-project-management.jpg", span: "md:col-span-5 md:row-span-4", size: "medium" },
+  { id: "wide1", num: "03", cat: "Framing", title: "Structural Framing", photo: "Roof trusses set on a framed building", src: "/assets/photos/proj-structural-framing.jpg", span: "md:col-span-4 md:row-span-3", size: "small" },
+  { id: "detail1", num: "04", cat: "Framing", title: "Structural Detail", photo: "Stair and wall framing detail", src: "/assets/photos/proj-structural-detail.jpg", span: "md:col-span-4 md:row-span-3", size: "small" },
+  { id: "grid1", num: "05", cat: "Residential", title: "Concrete Forming", photo: "Concrete foundation formwork", src: "/assets/photos/teaser-concrete-forms.jpg", span: "md:col-span-4 md:row-span-3", size: "small" },
+  { id: "grid2", num: "06", cat: "Commercial", title: "Site Preparation", photo: "Prepared site with foundations and gravel", src: "/assets/photos/proj-site-preparation.jpg", span: "md:col-span-6 md:row-span-3", size: "medium" },
+  { id: "grid3", num: "07", cat: "Commercial", title: "Commercial Build", photo: "Five-storey wood-frame commercial building", src: "/assets/photos/svc-general-construction.jpg", span: "md:col-span-6 md:row-span-3", size: "medium" },
+  { id: "vertical2", num: "08", cat: "Multi-Family", title: "Townhouse Complex", photo: "Framed townhouse complex", src: "/assets/photos/proj-townhouse-complex.jpg", span: "md:col-span-5 md:row-span-4", size: "medium" },
+  { id: "wide2", num: "09", cat: "Residential", title: "Project Handover", photo: "Completed townhouse framing at handover", src: "/assets/photos/proj-handover.jpg", span: "md:col-span-7 md:row-span-4", size: "large" },
 ];
 
 const titleSize = { large: "text-2xl", medium: "text-xl", small: "text-base" } as const;
@@ -90,7 +91,7 @@ export default function ProjectsGallery() {
                     {p.num}
                   </span>
                   <div className="absolute inset-0 transform-gpu will-change-transform transition-transform duration-[600ms] ease-spring group-hover:scale-[1.05]">
-                    <ImagePlaceholder label={p.photo} />
+                    <Image src={p.src} alt={p.photo} fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover" />
                   </div>
                   <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,rgba(13,13,13,0.8)_0%,rgba(13,13,13,0)_40%)] transition-opacity duration-[450ms] ease-spring group-hover:opacity-90" />
                   <div className="pointer-events-none absolute inset-x-0 bottom-0 p-5 transition-transform duration-[450ms] ease-spring group-hover:-translate-y-1 md:p-[26px]">

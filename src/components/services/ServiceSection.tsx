@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { EASE, viewportOnce } from "@/lib/motion";
-import ImagePlaceholder from "@/components/ImagePlaceholder";
+import Image from "next/image";
 
 export type Service = {
   num: string;
@@ -12,6 +12,7 @@ export type Service = {
   bullets: string[];
   cta: string;
   photoLabel: string;
+  photo: string;
 };
 
 export default function ServiceSection({ service, flip = false }: { service: Service; flip?: boolean }) {
@@ -65,8 +66,8 @@ export default function ServiceSection({ service, flip = false }: { service: Ser
       transition={{ duration: 0.65, ease: EASE, delay: 0.1 }}
       className={`group h-[320px] overflow-hidden lg:h-[520px] ${flip ? "lg:order-1" : ""}`}
     >
-      <div className="h-full transform-gpu will-change-transform transition-transform duration-[700ms] ease-spring group-hover:scale-[1.04]">
-        <ImagePlaceholder label={service.photoLabel} light />
+      <div className="relative h-full transform-gpu will-change-transform transition-transform duration-[700ms] ease-spring group-hover:scale-[1.04]">
+        <Image src={service.photo} alt={service.photoLabel} fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
       </div>
     </motion.div>
   );

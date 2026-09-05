@@ -19,7 +19,8 @@ const services: Service[] = [
     ],
     bullets: ["Custom home framing", "Single-family residential framing", "Duplex framing", "Townhouse complex framing", "Low-rise multi-family framing", "Two-storey and flat roof framing", "Strata building framing"],
     cta: "Get a Quote for Framing",
-    photoLabel: "Add project photo here — Canadian wood framing",
+    photoLabel: "Townhouse framing in progress with a boom lift on site",
+    photo: "/assets/photos/services-residential-multifamily.jpg",
   },
   {
     num: "02",
@@ -30,7 +31,8 @@ const services: Service[] = [
     ],
     bullets: ["New home construction", "Residential and commercial builds", "Multi-family developments", "End-to-end project delivery", "Structural and finish coordination"],
     cta: "Get a Construction Quote",
-    photoLabel: "Add project photo here — finished home / construction site",
+    photoLabel: "Three-storey wood-frame building under construction",
+    photo: "/assets/photos/services-general-construction.jpg",
   },
   {
     num: "03",
@@ -41,7 +43,8 @@ const services: Service[] = [
     ],
     bullets: ["Overall project planning and scheduling", "Trade and subcontractor coordination", "Budget tracking and progress reporting", "Structural drawing review and management", "Site supervision and quality control", "Deficiency management and final handover"],
     cta: "Talk to Us About Project Management",
-    photoLabel: "Add project photo here — site coordination / planning",
+    photoLabel: "Multi-family building with a tower crane on site",
+    photo: "/assets/photos/services-project-management.jpg",
   },
   {
     num: "04",
@@ -51,7 +54,8 @@ const services: Service[] = [
     ],
     bullets: ["Residential lot excavation", "Commercial site preparation", "Grading and levelling", "Trenching for utilities", "Earthwork and soil removal", "Site drainage preparation"],
     cta: "Get an Excavation Quote",
-    photoLabel: "Add project photo here — excavation / site prep",
+    photoLabel: "Excavated and gravelled site with foundations poured",
+    photo: "/assets/photos/services-excavation.jpg",
   },
   {
     num: "05",
@@ -62,7 +66,8 @@ const services: Service[] = [
     ],
     bullets: ["Scope review and goal alignment", "Budget planning and cost analysis", "Structural drawing review", "Schedule development", "Trade coordination planning", "Permit and code review"],
     cta: "Start Your Pre-Construction Planning",
-    photoLabel: "Add project photo here — plans / drawings",
+    photoLabel: "Subfloor deck sheathed and ready for wall framing",
+    photo: "/assets/photos/services-preconstruction.jpg",
   },
   {
     num: "06",
@@ -73,7 +78,8 @@ const services: Service[] = [
     ],
     bullets: ["Foundation forming", "Structural wall forming", "Retaining wall forming", "Slab and footing forming", "ICF (Insulated Concrete Form) projects", "Commercial structural forming"],
     cta: "Get a Forming Quote",
-    photoLabel: "Add project photo here — concrete forming",
+    photoLabel: "Concrete foundation formwork on a residential lot",
+    photo: "/assets/photos/svc-concrete-forming.jpg",
   },
 ];
 

@@ -4,7 +4,6 @@ import Reveal from "@/components/Reveal";
 import CountUp from "@/components/CountUp";
 import CtaBand from "@/components/CtaBand";
 import Preloader from "@/components/Preloader";
-import ImagePlaceholder from "@/components/ImagePlaceholder";
 import ServicesAccordion from "@/components/home/ServicesAccordion";
 import { HeroFade, HeroParallax } from "@/components/home/HeroMotion";
 
@@ -61,7 +60,7 @@ export default function Home() {
       {/* HERO */}
       <section className="relative flex min-h-[92vh] items-center overflow-hidden bg-black">
         <HeroParallax>
-          <Image src="/assets/hero-framing.jpg" alt="Timber framing under construction in Surrey, BC" fill priority sizes="100vw" className="object-cover" />
+          <Image src="/assets/photos/hero-townhouse-framing.jpg" alt="Townhouse framing by Mannat Framing in the Lower Mainland" fill priority sizes="100vw" className="object-cover" />
         </HeroParallax>
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(95deg,#0D0D0D_28%,rgba(13,13,13,0.55)_55%,rgba(13,13,13,0.1)_100%)]" />
         <span className="absolute left-5 top-9 text-xs tracking-[1px] text-gold md:left-10">01</span>
@@ -133,10 +132,11 @@ export default function Home() {
         <div className="mx-auto grid max-w-[1440px] grid-cols-1 items-start gap-14 px-5 py-[100px] md:px-10 lg:grid-cols-[0.8fr_1.1fr_0.7fr]">
           <Reveal className="group h-[480px] overflow-hidden">
             <Image
-              src="/assets/whyus-worker.png"
-              alt="Framing crew member on a Mannat Framing job site"
-              width={800}
-              height={960}
+              src="/assets/photos/whyus-roof-trusses.jpg"
+              alt="Roof trusses assembled on a Mannat Framing job site"
+              width={1200}
+              height={1600}
+              sizes="(min-width: 1024px) 30vw, 100vw"
               className="h-full w-full object-cover transition-transform duration-[700ms] ease-spring group-hover:scale-105"
             />
           </Reveal>
@@ -210,25 +210,25 @@ export default function Home() {
           </Reveal>
           <div className="grid grid-cols-1 gap-[14px] md:h-[380px] md:grid-cols-[1.2fr_1fr]">
             <Reveal index={1} className="group h-[220px] min-h-0 overflow-hidden md:h-full">
-              <div className="h-full transition-transform duration-[600ms] ease-spring group-hover:scale-[1.04]">
-                <ImagePlaceholder label="Drop a large framing project photo" />
+              <div className="relative h-full transform-gpu transition-transform duration-[600ms] ease-spring group-hover:scale-[1.04]">
+                <Image src="/assets/photos/teaser-townhouse-row.jpg" alt="Row of framed townhouses" fill sizes="(min-width: 1024px) 45vw, 100vw" className="object-cover" />
               </div>
             </Reveal>
             <div className="grid min-h-0 grid-rows-[1fr_1fr] gap-[14px] overflow-hidden">
               <Reveal index={2} className="group h-[220px] min-h-0 overflow-hidden md:h-auto">
-                <div className="h-full transition-transform duration-[600ms] ease-spring group-hover:scale-[1.04]">
-                  <ImagePlaceholder label="Drop a concrete forming photo" />
+                <div className="relative h-full transform-gpu transition-transform duration-[600ms] ease-spring group-hover:scale-[1.04]">
+                  <Image src="/assets/photos/teaser-concrete-forms.jpg" alt="Concrete foundation formwork" fill sizes="(min-width: 1024px) 30vw, 100vw" className="object-cover" />
                 </div>
               </Reveal>
               <div className="grid min-h-0 grid-cols-2 gap-[14px] overflow-hidden">
                 <Reveal index={3} className="group h-[160px] min-h-0 overflow-hidden md:h-auto">
-                  <div className="h-full transition-transform duration-[600ms] ease-spring group-hover:scale-[1.04]">
-                    <ImagePlaceholder label="Drop a multi-family building photo" />
+                  <div className="relative h-full transform-gpu transition-transform duration-[600ms] ease-spring group-hover:scale-[1.04]">
+                    <Image src="/assets/photos/svc-general-construction.jpg" alt="Five-storey wood-frame multi-family building" fill sizes="(min-width: 1024px) 15vw, 50vw" className="object-cover" />
                   </div>
                 </Reveal>
                 <Reveal index={4} className="group h-[160px] min-h-0 overflow-hidden md:h-auto">
-                  <div className="h-full transition-transform duration-[600ms] ease-spring group-hover:scale-[1.04]">
-                    <ImagePlaceholder label="Drop a site-prep photo" />
+                  <div className="relative h-full transform-gpu transition-transform duration-[600ms] ease-spring group-hover:scale-[1.04]">
+                    <Image src="/assets/photos/svc-excavation-site.jpg" alt="Excavated site prepared for framing" fill sizes="(min-width: 1024px) 15vw, 50vw" className="object-cover" />
                   </div>
                 </Reveal>
               </div>

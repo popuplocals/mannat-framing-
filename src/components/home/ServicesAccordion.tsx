@@ -4,15 +4,15 @@ import { useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { EASE, viewportOnce } from "@/lib/motion";
-import ImagePlaceholder from "@/components/ImagePlaceholder";
+import Image from "next/image";
 
 const services = [
-  { num: "01", title: "Framing", desc: "Our crews are some of the most experienced framers in the Lower Mainland. We work alongside builders and developers on residential, multi-family and townhouse framing — putting them ahead of schedule with a beautifully framed project." },
-  { num: "02", title: "General Construction", desc: "Full-service construction from ground up — concept and structural design through completion. Experienced team across all trades, with strict attention to quality, detail and deadlines." },
-  { num: "03", title: "Project Management", desc: "Mannat Framing takes full ownership of your project timeline — coordinating trades, managing structural drawings, and overseeing every stage from pre-construction through handover. No surprises. Just results." },
-  { num: "04", title: "Excavation & Site Prep", desc: "Complete site preparation services — from excavation and grading to trenching and earthwork — for residential lots and commercial sites across the Lower Mainland. Your site, ready to build." },
-  { num: "05", title: "Pre-Construction", desc: "A successful project starts long before crews arrive on site. We get involved early to review scope, align budgets, read structural drawings, and build a realistic schedule — so everything runs smoothly from day one." },
-  { num: "06", title: "Concrete Forming", desc: "Experienced in every type of forming system. Concrete forming for foundations, walls and structural elements — properly scheduled, budgeted and installed by experienced concrete crews." },
+  { num: "01", image: "/assets/photos/svc-framing-trusses.jpg", title: "Framing", desc: "Our crews are some of the most experienced framers in the Lower Mainland. We work alongside builders and developers on residential, multi-family and townhouse framing — putting them ahead of schedule with a beautifully framed project." },
+  { num: "02", image: "/assets/photos/svc-general-construction.jpg", title: "General Construction", desc: "Full-service construction from ground up — concept and structural design through completion. Experienced team across all trades, with strict attention to quality, detail and deadlines." },
+  { num: "03", image: "/assets/photos/svc-project-management.jpg", title: "Project Management", desc: "Mannat Framing takes full ownership of your project timeline — coordinating trades, managing structural drawings, and overseeing every stage from pre-construction through handover. No surprises. Just results." },
+  { num: "04", image: "/assets/photos/svc-excavation-site.jpg", title: "Excavation & Site Prep", desc: "Complete site preparation services — from excavation and grading to trenching and earthwork — for residential lots and commercial sites across the Lower Mainland. Your site, ready to build." },
+  { num: "05", image: "/assets/photos/svc-preconstruction-deck.jpg", title: "Pre-Construction", desc: "A successful project starts long before crews arrive on site. We get involved early to review scope, align budgets, read structural drawings, and build a realistic schedule — so everything runs smoothly from day one." },
+  { num: "06", image: "/assets/photos/svc-concrete-forming.jpg", title: "Concrete Forming", desc: "Experienced in every type of forming system. Concrete forming for foundations, walls and structural elements — properly scheduled, budgeted and installed by experienced concrete crews." },
 ];
 
 export default function ServicesAccordion() {
@@ -98,13 +98,13 @@ export default function ServicesAccordion() {
           <AnimatePresence mode="wait">
             <motion.div
               key={active.num}
-              className="h-full"
+              className="relative h-full"
               initial={{ opacity: 0, scale: 1.04 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.45, ease: EASE }}
             >
-              <ImagePlaceholder label={`Drop a photo for: ${active.title}`} />
+              <Image src={active.image} alt={active.title} fill sizes="(min-width: 1024px) 30vw, 100vw" className="object-cover" />
             </motion.div>
           </AnimatePresence>
         </div>

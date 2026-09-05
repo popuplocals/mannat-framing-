@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Reveal from "@/components/Reveal";
 import CountUp from "@/components/CountUp";
 import CtaBand from "@/components/CtaBand";
-import ImagePlaceholder from "@/components/ImagePlaceholder";
+import Image from "next/image";
 import AboutHero from "@/components/about/AboutHero";
 
 export const metadata: Metadata = {
@@ -34,8 +34,8 @@ export default function AboutPage() {
       {/* OUR STORY */}
       <section className="relative mx-auto max-w-[1440px] px-5 pb-[100px] md:px-10 md:pb-[140px]">
         <Reveal className="group relative z-[1] -mt-[70px] h-[320px] overflow-hidden md:h-[520px]">
-          <div className="h-full transition-transform duration-[800ms] ease-spring group-hover:scale-[1.02]">
-            <ImagePlaceholder label="Drop a framing crew / construction site photo" />
+          <div className="relative h-full transform-gpu transition-transform duration-[800ms] ease-spring group-hover:scale-[1.02]">
+            <Image src="/assets/photos/about-story-townhouses.jpg" alt="Framed townhouse development on a Mannat Framing site" fill sizes="(min-width: 1024px) 1360px, 100vw" className="object-cover" />
           </div>
         </Reveal>
         <Reveal
