@@ -90,13 +90,13 @@ export default function Home() {
               <div className="flex flex-wrap gap-4">
                 <Link
                   href="/contact"
-                  className="inline-block bg-gold px-7 py-[15px] text-sm tracking-[0.3px] text-black shadow-[0_18px_40px_-16px_rgba(197,164,109,0.7)] transition-[background-color,transform,box-shadow] duration-300 ease-spring hover:scale-[1.04] hover:bg-gold-dark active:scale-[0.97]"
+                  className="inline-block rounded-full bg-gold px-7 py-[15px] text-sm tracking-[0.3px] text-black shadow-[0_18px_40px_-16px_rgba(197,164,109,0.7)] transition-[background-color,transform,box-shadow] duration-300 ease-spring hover:scale-[1.04] hover:bg-gold-dark active:scale-[0.97]"
                 >
                   Start a Project
                 </Link>
                 <Link
                   href="/services"
-                  className="inline-block border border-warm-white/40 px-7 py-[15px] text-sm tracking-[0.3px] text-warm-white transition-[border-color,color,transform] duration-300 ease-spring hover:-translate-y-0.5 hover:border-gold hover:text-gold active:-translate-y-0.5 active:border-gold"
+                  className="inline-block rounded-full border border-warm-white/40 px-7 py-[15px] text-sm tracking-[0.3px] text-warm-white transition-[border-color,color,transform] duration-300 ease-spring hover:-translate-y-0.5 hover:border-gold hover:text-gold active:-translate-y-0.5 active:border-gold"
                 >
                   Our Services
                 </Link>
@@ -241,7 +241,7 @@ export default function Home() {
 
       {/* Sticky mobile CTA */}
       <div className="fixed inset-x-0 bottom-0 z-40 border-t border-gold/30 bg-black px-5 py-[14px] md:hidden">
-        <Link href="/contact" className="block bg-gold py-[14px] text-center text-sm tracking-[0.3px] text-black transition-transform duration-300 ease-spring active:scale-[0.98]">
+        <Link href="/contact" className="block rounded-full bg-gold py-[14px] text-center text-sm tracking-[0.3px] text-black transition-transform duration-300 ease-spring active:scale-[0.98]">
           Get a Free Quote
         </Link>
       </div>

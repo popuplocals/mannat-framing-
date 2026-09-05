@@ -120,7 +120,7 @@ export default function ContactForm() {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.97 }}
                 transition={{ duration: 0.3, ease: EASE }}
-                className="mt-2 cursor-pointer border-0 bg-black px-[30px] py-[15px] text-sm tracking-[0.3px] text-warm-white shadow-[0_18px_40px_-16px_rgba(13,13,13,0.6)] transition-colors duration-300 ease-spring hover:bg-charcoal"
+                className="mt-2 cursor-pointer rounded-full border-0 bg-black px-[30px] py-[15px] text-sm tracking-[0.3px] text-warm-white shadow-[0_18px_40px_-16px_rgba(13,13,13,0.6)] transition-colors duration-300 ease-spring hover:bg-charcoal"
               >
                 Send My Request
               </motion.button>

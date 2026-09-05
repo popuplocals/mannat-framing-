@@ -21,7 +21,7 @@ export default function CtaBand({ href = "/contact", label = "Request a Free Quo
         <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} transition={{ duration: 0.3, ease: EASE }} className="inline-block">
           <Link
             href={href}
-            className="inline-block bg-black px-[34px] py-4 text-sm tracking-[0.3px] text-warm-white shadow-[0_18px_40px_-16px_rgba(13,13,13,0.6)] transition-colors duration-300 ease-spring hover:bg-charcoal"
+            className="inline-block rounded-full bg-black px-[34px] py-4 text-sm tracking-[0.3px] text-warm-white shadow-[0_18px_40px_-16px_rgba(13,13,13,0.6)] transition-colors duration-300 ease-spring hover:bg-charcoal"
           >
             {label} &rarr;
           </Link>

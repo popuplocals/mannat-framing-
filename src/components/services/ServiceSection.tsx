@@ -53,7 +53,7 @@ export default function ServiceSection({ service, flip = false, detail = false }
         <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} transition={{ duration: 0.3, ease: EASE }} className="inline-block">
           <Link
             href="/contact"
-            className="group inline-flex items-center gap-[10px] border border-gold bg-black px-7 py-[15px] text-sm tracking-[0.3px] text-warm-white transition-[background-color,color,gap] duration-300 ease-spring hover:gap-4 hover:bg-gold hover:text-black active:bg-gold active:text-black"
+            className="group inline-flex items-center gap-[10px] rounded-full border border-gold bg-black px-7 py-[15px] text-sm tracking-[0.3px] text-warm-white transition-[background-color,color,gap] duration-300 ease-spring hover:gap-4 hover:bg-gold hover:text-black active:bg-gold active:text-black"
           >
             {service.cta} <span aria-hidden="true">&rarr;</span>
           </Link>
