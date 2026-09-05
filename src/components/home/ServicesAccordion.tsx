@@ -7,12 +7,12 @@ import { EASE, viewportOnce } from "@/lib/motion";
 import Image from "next/image";
 
 const services = [
-  { num: "01", image: "/assets/photos/svc-framing-trusses.jpg", title: "Framing", desc: "Our crews are some of the most experienced framers in the Lower Mainland. We work alongside builders and developers on residential, multi-family and townhouse framing — putting them ahead of schedule with a beautifully framed project." },
-  { num: "02", image: "/assets/photos/svc-general-construction.jpg", title: "General Construction", desc: "Full-service construction from ground up — concept and structural design through completion. Experienced team across all trades, with strict attention to quality, detail and deadlines." },
-  { num: "03", image: "/assets/photos/svc-project-management.jpg", title: "Project Management", desc: "Mannat Framing takes full ownership of your project timeline — coordinating trades, managing structural drawings, and overseeing every stage from pre-construction through handover. No surprises. Just results." },
-  { num: "04", image: "/assets/photos/svc-excavation-site.jpg", title: "Excavation & Site Prep", desc: "Complete site preparation services — from excavation and grading to trenching and earthwork — for residential lots and commercial sites across the Lower Mainland. Your site, ready to build." },
-  { num: "05", image: "/assets/photos/svc-preconstruction-deck.jpg", title: "Pre-Construction", desc: "A successful project starts long before crews arrive on site. We get involved early to review scope, align budgets, read structural drawings, and build a realistic schedule — so everything runs smoothly from day one." },
-  { num: "06", image: "/assets/photos/svc-concrete-forming.jpg", title: "Concrete Forming", desc: "Experienced in every type of forming system. Concrete forming for foundations, walls and structural elements — properly scheduled, budgeted and installed by experienced concrete crews." },
+  { num: "01", slug: "framing", image: "/assets/photos/svc-framing-trusses.jpg", title: "Framing", desc: "Our crews are some of the most experienced framers in the Lower Mainland. We work alongside builders and developers on residential, multi-family and townhouse framing — putting them ahead of schedule with a beautifully framed project." },
+  { num: "02", slug: "general-construction", image: "/assets/photos/svc-general-construction.jpg", title: "General Construction", desc: "Full-service construction from ground up — concept and structural design through completion. Experienced team across all trades, with strict attention to quality, detail and deadlines." },
+  { num: "03", slug: "project-management", image: "/assets/photos/svc-project-management.jpg", title: "Project Management", desc: "Mannat Framing takes full ownership of your project timeline — coordinating trades, managing structural drawings, and overseeing every stage from pre-construction through handover. No surprises. Just results." },
+  { num: "04", slug: "excavation-site-prep", image: "/assets/photos/svc-excavation-site.jpg", title: "Excavation & Site Prep", desc: "Complete site preparation services — from excavation and grading to trenching and earthwork — for residential lots and commercial sites across the Lower Mainland. Your site, ready to build." },
+  { num: "05", slug: "pre-construction", image: "/assets/photos/svc-preconstruction-deck.jpg", title: "Pre-Construction", desc: "A successful project starts long before crews arrive on site. We get involved early to review scope, align budgets, read structural drawings, and build a realistic schedule — so everything runs smoothly from day one." },
+  { num: "06", slug: "concrete-forming", image: "/assets/photos/svc-concrete-forming.jpg", title: "Concrete Forming", desc: "Experienced in every type of forming system. Concrete forming for foundations, walls and structural elements — properly scheduled, budgeted and installed by experienced concrete crews." },
 ];
 
 export default function ServicesAccordion() {
@@ -79,6 +79,7 @@ export default function ServicesAccordion() {
                     className="overflow-hidden"
                   >
                     <p className="m-0 ml-[42px] mt-3 max-w-[400px] text-[13px] leading-[1.7] text-ink-2">{s.desc}</p>
+                    <Link href={`/services/${s.slug}`} className="ml-[42px] mt-3 inline-flex items-center gap-1 text-[13px] font-medium text-accent transition-[gap,color] duration-300 ease-spring hover:gap-2 hover:text-ink active:gap-2">Learn more <span aria-hidden="true">&rarr;</span></Link>
                   </motion.div>
                 )}
               </AnimatePresence>

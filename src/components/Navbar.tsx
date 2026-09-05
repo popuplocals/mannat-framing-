@@ -3,9 +3,10 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { EASE } from "@/lib/motion";
+import { SERVICES } from "@/lib/services";
 import ThemeToggle from "@/components/ThemeToggle";
 
 const links = [
@@ -18,16 +19,37 @@ const links = [
 
 export const NAV_REST_HEIGHT = 76;
 
+const Chevron = ({ open }: { open: boolean }) => (
+  <svg
+    width="12"
+    height="12"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+    className={`opacity-60 transition-transform duration-300 ease-spring ${open ? "rotate-180" : ""}`}
+  >
+    <path d="m6 9 6 6 6-6" />
+  </svg>
+);
+
 /**
  * Fixed header. At the top of the page it is a full-width 76px bar; once the
  * visitor scrolls it shrinks into a floating 56px glass capsule with a smaller
  * logo and tighter padding. A flow spacer holds the rest height so page content
- * never reflows while the capsule resizes.
+ * never reflows while the capsule resizes. "Services" opens a mega-menu of the
+ * six services on hover/focus (desktop) and as a collapsible list on mobile.
  */
 export default function Navbar() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const closeTimer = useRef<number | null>(null);
 
   useEffect(() => {
     let ticking = false;
@@ -46,7 +68,31 @@ export default function Navbar() {
 
   useEffect(() => {
     setOpen(false);
+    setServicesOpen(false);
+    setMobileServicesOpen(false);
   }, [pathname]);
+
+  useEffect(() => {
+    if (!servicesOpen) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setServicesOpen(false);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [servicesOpen]);
+
+  const openServices = () => {
+    if (closeTimer.current) window.clearTimeout(closeTimer.current);
+    setServicesOpen(true);
+  };
+  const closeServices = () => {
+    closeTimer.current = window.setTimeout(() => setServicesOpen(false), 120);
+  };
+
+  const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname.startsWith(href));
+
+  const linkCls = (active: boolean) =>
+    `relative text-sm whitespace-nowrap transition-[color,transform] duration-300 ease-spring hover:-translate-y-0.5 active:-translate-y-0.5 after:absolute after:bottom-[-6px] after:left-0 after:h-px after:bg-gold after:transition-[width] after:duration-300 after:ease-spring after:content-[''] ${
+      active ? "text-accent after:w-full" : "text-ink after:w-0 hover:after:w-full active:after:w-full"
+    }`;
 
   return (
     <>
@@ -103,20 +149,89 @@ export default function Navbar() {
             </Link>
 
             <div className="hidden items-center gap-8 md:flex">
-              {links.map((l) => {
-                const active = pathname === l.href;
-                return (
-                  <Link
+              {links.map((l) =>
+                l.label === "Services" ? (
+                  <div
                     key={l.href}
-                    href={l.href}
-                    className={`relative text-sm whitespace-nowrap transition-[color,transform] duration-300 ease-spring hover:-translate-y-0.5 active:-translate-y-0.5 after:absolute after:bottom-[-6px] after:left-0 after:h-px after:bg-gold after:transition-[width] after:duration-300 after:ease-spring after:content-[''] ${
-                      active ? "text-accent after:w-full" : "text-ink after:w-0 hover:after:w-full active:after:w-full"
-                    }`}
+                    className="relative"
+                    onMouseEnter={openServices}
+                    onMouseLeave={closeServices}
+                    onFocus={openServices}
+                    onBlur={(e) => {
+                      if (!e.currentTarget.contains(e.relatedTarget as Node)) setServicesOpen(false);
+                    }}
                   >
+                    <Link
+                      href="/services"
+                      aria-haspopup="true"
+                      aria-expanded={servicesOpen}
+                      onClick={(e) => {
+                        // First tap on touch devices opens the menu; second tap follows the link.
+                        if (window.matchMedia("(hover: none)").matches && !servicesOpen) {
+                          e.preventDefault();
+                          setServicesOpen(true);
+                        }
+                      }}
+                      className={`${linkCls(isActive("/services"))} flex items-center gap-1`}
+                    >
+                      Services
+                      <Chevron open={servicesOpen} />
+                    </Link>
+
+                    <AnimatePresence>
+                      {servicesOpen && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 8 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: 8 }}
+                          transition={{ duration: 0.18, ease: EASE }}
+                          className="absolute left-1/2 top-full w-[560px] -translate-x-1/2 pt-4"
+                        >
+                          <div className="overflow-hidden border border-ink/10 border-t-2 border-t-gold bg-surface-2 p-3 shadow-lift backdrop-blur-xl">
+                            <div className="grid grid-cols-2 gap-1.5">
+                              {SERVICES.map((s) => {
+                                const active = pathname === `/services/${s.slug}`;
+                                return (
+                                  <Link
+                                    key={s.slug}
+                                    href={`/services/${s.slug}`}
+                                    className={`group/item flex items-center gap-3 p-2.5 transition-[background-color,transform] duration-300 ease-spring hover:bg-gold/10 active:bg-gold/10 ${
+                                      active ? "bg-gold/10" : ""
+                                    }`}
+                                  >
+                                    <span className="relative h-12 w-12 shrink-0 overflow-hidden bg-charcoal">
+                                      <Image src={s.photo} alt="" fill sizes="48px" className="object-cover transition-transform duration-500 ease-spring group-hover/item:scale-110" />
+                                    </span>
+                                    <span className="min-w-0">
+                                      <span className="block font-mono text-[9.5px] font-medium uppercase tracking-[1.4px] text-accent">{s.tag}</span>
+                                      <span className="mt-0.5 block truncate font-heading text-sm font-bold text-ink transition-colors duration-300 group-hover/item:text-accent">
+                                        {s.title}
+                                      </span>
+                                    </span>
+                                  </Link>
+                                );
+                              })}
+                              <Link
+                                href="/services"
+                                className="group/all col-span-2 flex items-center justify-center gap-2 bg-gold p-3 font-heading text-sm font-bold text-black transition-[background-color,gap] duration-300 ease-spring hover:gap-3 hover:bg-gold-dark active:bg-gold-dark"
+                              >
+                                View All Services
+                                <span aria-hidden="true" className="transition-transform duration-300 ease-spring group-hover/all:translate-x-1">
+                                  &rarr;
+                                </span>
+                              </Link>
+                            </div>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                ) : (
+                  <Link key={l.href} href={l.href} className={linkCls(isActive(l.href))}>
                     {l.label}
                   </Link>
-                );
-              })}
+                )
+              )}
             </div>
 
             <div className="flex items-center gap-2 md:gap-3">
@@ -146,6 +261,7 @@ export default function Navbar() {
             </div>
           </nav>
 
+          {/* Mobile menu */}
           <AnimatePresence>
             {open && (
               <motion.div
@@ -157,9 +273,12 @@ export default function Navbar() {
                   scrolled ? "rounded-3xl" : "mx-3 rounded-3xl"
                 }`}
               >
-                <div className="flex flex-col gap-1 px-4 py-4">
+                <div className="flex max-h-[calc(100vh-140px)] flex-col gap-1 overflow-y-auto px-4 py-4">
                   {links.map((l, i) => {
-                    const active = pathname === l.href;
+                    const active = isActive(l.href);
+                    const itemCls = `block rounded-xl px-3 py-3 font-heading text-base font-bold transition-[background-color,color,transform] duration-300 ease-spring active:translate-x-1 active:bg-gold/10 ${
+                      active ? "bg-gold/10 text-accent" : "text-ink"
+                    }`;
                     return (
                       <motion.div
                         key={l.href}
@@ -167,14 +286,55 @@ export default function Navbar() {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.3, ease: EASE, delay: 0.05 + i * 0.05 }}
                       >
-                        <Link
-                          href={l.href}
-                          className={`block rounded-xl px-3 py-3 font-heading text-base font-bold transition-[background-color,color,transform] duration-300 ease-spring active:translate-x-1 active:bg-gold/10 ${
-                            active ? "bg-gold/10 text-accent" : "text-ink"
-                          }`}
-                        >
-                          {l.label}
-                        </Link>
+                        {l.label === "Services" ? (
+                          <>
+                            <button
+                              type="button"
+                              onClick={() => setMobileServicesOpen((v) => !v)}
+                              aria-expanded={mobileServicesOpen}
+                              className={`${itemCls} flex w-full cursor-pointer items-center justify-between border-0 bg-transparent text-left`}
+                            >
+                              <span className="flex items-center gap-1.5">
+                                Services <Chevron open={mobileServicesOpen} />
+                              </span>
+                            </button>
+                            <AnimatePresence initial={false}>
+                              {mobileServicesOpen && (
+                                <motion.div
+                                  initial={{ opacity: 0, height: 0 }}
+                                  animate={{ opacity: 1, height: "auto" }}
+                                  exit={{ opacity: 0, height: 0 }}
+                                  transition={{ duration: 0.3, ease: EASE }}
+                                  className="overflow-hidden"
+                                >
+                                  <div className="mb-2 ml-4 flex flex-col gap-1 border-l-2 border-gold/40 pl-3">
+                                    <Link href="/services" className="block rounded-lg px-3 py-2 text-sm font-semibold text-accent transition-transform duration-300 ease-spring active:translate-x-1">
+                                      All Services
+                                    </Link>
+                                    {SERVICES.map((s) => (
+                                      <Link
+                                        key={s.slug}
+                                        href={`/services/${s.slug}`}
+                                        className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-[background-color,transform] duration-300 ease-spring active:translate-x-1 active:bg-gold/10 ${
+                                          pathname === `/services/${s.slug}` ? "text-accent" : "text-ink-2"
+                                        }`}
+                                      >
+                                        <span className="relative h-8 w-8 shrink-0 overflow-hidden bg-charcoal">
+                                          <Image src={s.photo} alt="" fill sizes="32px" className="object-cover" />
+                                        </span>
+                                        {s.title}
+                                      </Link>
+                                    ))}
+                                  </div>
+                                </motion.div>
+                              )}
+                            </AnimatePresence>
+                          </>
+                        ) : (
+                          <Link href={l.href} className={itemCls}>
+                            {l.label}
+                          </Link>
+                        )}
                       </motion.div>
                     );
                   })}

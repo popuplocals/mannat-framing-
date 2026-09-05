@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
+import { SERVICES } from "@/lib/services";
 
-const services = ["Framing", "General Construction", "Project Management", "Excavation", "Pre-Construction", "Concrete Forming"];
 const cities = ["Surrey", "Langley", "Burnaby", "Vancouver", "Coquitlam", "Maple Ridge"];
 
 const linkCls = "text-concrete transition-[color,transform] duration-300 ease-spring hover:text-gold hover:translate-x-1 active:text-gold active:translate-x-1 inline-block";
@@ -43,13 +43,13 @@ export default function Footer() {
             </div>
           </div>
           <FooterCol title="SERVICES">
-            {services.map((s) => (
-              <Link key={s} href="/services" className={linkCls}>{s}</Link>
+            {SERVICES.map((s) => (
+              <Link key={s.slug} href={`/services/${s.slug}`} className={linkCls}>{s.title}</Link>
             ))}
           </FooterCol>
           <FooterCol title="CITIES">
             {cities.map((c) => (
-              <Link key={c} href="/about" className={linkCls}>{c}</Link>
+              <Link key={c} href="/about#where-we-work" className={linkCls}>{c}</Link>
             ))}
           </FooterCol>
           <FooterCol title="COMPANY">
