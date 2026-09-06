@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { EASE } from "@/lib/motion";
 import Image from "next/image";
+import IsoFrame from "@/components/about/IsoFrame";
 
 const EASE_CSS = "cubic-bezier(0.23, 1, 0.32, 1)";
 const lines = ["10+ Years.", "Built in", "Surrey."];
@@ -15,6 +16,8 @@ export default function AboutHero() {
 
       <div className="mx-auto grid max-w-[1440px] grid-cols-1 md:min-h-[88vh] md:grid-cols-[1.1fr_0.9fr]">
         <div className="relative z-[2] flex flex-col justify-center px-5 pb-[70px] pt-[120px] md:pl-10 md:pr-0 md:pb-[90px] md:pt-[150px]">
+          {/* Decorative click-to-build isometric frame; canvas sits behind the text (see IsoFrame.tsx) */}
+          <IsoFrame />
           <motion.span
             className="font-mono text-xs font-medium tracking-[2.5px] text-gold"
             initial={{ opacity: 0, y: 16 }}
