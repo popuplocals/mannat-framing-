@@ -5,6 +5,7 @@ import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { EASE, viewportOnce } from "@/lib/motion";
 import Image from "next/image";
+import ServiceIcon from "@/components/ServiceIcon";
 
 const services = [
   { num: "01", slug: "framing", image: "/assets/photos/svc-framing-trusses.jpg", title: "Framing", desc: "Our crews are some of the most experienced framers in the Lower Mainland. We work alongside builders and developers on residential, multi-family and townhouse framing — putting them ahead of schedule with a beautifully framed project." },
@@ -53,7 +54,10 @@ export default function ServicesAccordion() {
                 onClick={() => setOpenIndex(open ? -1 : i)}
                 className="group flex w-full cursor-pointer items-center justify-between border-0 bg-transparent p-0 text-left text-inherit"
               >
-                <span className="flex items-baseline gap-5">
+                <span className="flex items-center gap-4">
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-gold/30 bg-gold/10 text-accent transition-[background-color,color,border-color,transform] duration-300 ease-spring group-hover:scale-105 group-hover:border-gold group-hover:bg-gold group-hover:text-black">
+                    <ServiceIcon slug={s.slug} size={16} />
+                  </span>
                   <span className="font-heading text-sm font-bold text-gold">{s.num}</span>
                   <span className={`font-heading text-[17px] font-bold transition-[color,transform] duration-300 ease-spring group-hover:translate-x-1 ${open ? "text-ink" : "text-ink group-hover:text-accent"}`}>
                     {s.title}
@@ -78,8 +82,8 @@ export default function ServicesAccordion() {
                     transition={{ duration: 0.4, ease: EASE }}
                     className="overflow-hidden"
                   >
-                    <p className="m-0 ml-[42px] mt-3 max-w-[400px] text-[13px] leading-[1.7] text-ink-2">{s.desc}</p>
-                    <Link href={`/services/${s.slug}`} className="ml-[42px] mt-3 inline-flex items-center gap-1 text-[13px] font-medium text-accent transition-[gap,color] duration-300 ease-spring hover:gap-2 hover:text-ink active:gap-2">Learn more <span aria-hidden="true">&rarr;</span></Link>
+                    <p className="m-0 ml-[52px] mt-3 max-w-[400px] text-[13px] leading-[1.7] text-ink-2">{s.desc}</p>
+                    <Link href={`/services/${s.slug}`} className="ml-[52px] mt-3 inline-flex items-center gap-1 text-[13px] font-medium text-accent transition-[gap,color] duration-300 ease-spring hover:gap-2 hover:text-ink active:gap-2">Learn more <span aria-hidden="true">&rarr;</span></Link>
                   </motion.div>
                 )}
               </AnimatePresence>

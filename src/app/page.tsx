@@ -4,8 +4,11 @@ import Reveal from "@/components/Reveal";
 import CountUp from "@/components/CountUp";
 import CtaBand from "@/components/CtaBand";
 import Preloader from "@/components/Preloader";
+import ServiceIcon from "@/components/ServiceIcon";
 import ServicesAccordion from "@/components/home/ServicesAccordion";
+import AboutStrip from "@/components/home/AboutStrip";
 import { HeroFade, HeroParallax } from "@/components/home/HeroMotion";
+import { SERVICES } from "@/lib/services";
 
 const stats = [
   { num: "10+", label: "Years in Business" },
@@ -63,6 +66,7 @@ export default function Home() {
           <Image src="/assets/hero-framing.jpg" alt="Timber framing under construction in Surrey, BC" fill priority sizes="100vw" className="object-cover" />
         </HeroParallax>
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(95deg,#0D0D0D_28%,rgba(13,13,13,0.55)_55%,rgba(13,13,13,0.1)_100%)]" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/70 to-transparent" />
         <span className="absolute left-5 top-9 text-xs tracking-[1px] text-gold md:left-10">01</span>
         <span className="absolute bottom-[110px] left-5 top-10 w-px bg-gold/35 md:left-10" />
         <span className="absolute bottom-[110px] left-1 hidden rotate-180 text-[11px] tracking-[2px] text-concrete [writing-mode:vertical-rl] md:block md:left-4">FRAME / BUILD</span>
@@ -70,15 +74,18 @@ export default function Home() {
 
         <HeroFade>
         <div className="relative mx-auto w-full max-w-[1440px] px-5 md:px-10">
-          <div className="max-w-[620px] py-24 md:pl-6">
+          <div className="max-w-[640px] py-24 md:pl-6">
             <Reveal index={0}>
-              <span className="mb-[26px] block text-[13px] tracking-[1px] text-gold">Framing &middot; Construction &middot; Lower Mainland, BC</span>
+              <span className="mb-7 inline-flex items-center gap-2.5 rounded-full border border-warm-white/15 bg-black/35 px-4 py-2 text-[12px] tracking-[0.6px] text-warm-white/90 backdrop-blur-md">
+                <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-gold animate-subtle-pulse" />
+                Framing &middot; Construction &middot; Lower Mainland, BC
+              </span>
             </Reveal>
             <Reveal index={1}>
               <h1 className="m-0 mb-[26px] font-heading text-[clamp(42px,6vw,68px)] font-extrabold leading-[1.08] text-warm-white">
                 Building
                 <br />
-                Surrey&rsquo;s Future.
+                Surrey&rsquo;s <span className="text-gold">Future.</span>
               </h1>
             </Reveal>
             <Reveal index={2}>
@@ -90,9 +97,9 @@ export default function Home() {
               <div className="flex flex-wrap gap-4">
                 <Link
                   href="/contact"
-                  className="inline-block rounded-full bg-gold px-7 py-[15px] text-sm tracking-[0.3px] text-black shadow-[0_18px_40px_-16px_rgba(197,164,109,0.7)] transition-[background-color,transform,box-shadow] duration-300 ease-spring hover:scale-[1.04] hover:bg-gold-dark active:scale-[0.97]"
+                  className="inline-flex items-center gap-2 rounded-full bg-gold px-7 py-[15px] text-sm tracking-[0.3px] text-black shadow-[0_18px_40px_-16px_rgba(197,164,109,0.7)] transition-[background-color,transform,box-shadow] duration-300 ease-spring hover:scale-[1.04] hover:bg-gold-pale active:scale-[0.97]"
                 >
-                  Start a Project
+                  Start a Project <span aria-hidden="true">&rarr;</span>
                 </Link>
                 <Link
                   href="/services"
@@ -102,9 +109,40 @@ export default function Home() {
                 </Link>
               </div>
             </Reveal>
+            <Reveal index={4}>
+              <ul className="m-0 mt-9 flex list-none flex-wrap gap-x-6 gap-y-2.5 p-0">
+                {SERVICES.map((s) => (
+                  <li key={s.slug}>
+                    <Link
+                      href={`/services/${s.slug}`}
+                      className="inline-flex items-center gap-2 text-[13px] text-concrete transition-[color,transform] duration-300 ease-spring hover:-translate-y-0.5 hover:text-gold active:text-gold"
+                    >
+                      <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-gold" />
+                      {s.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
           </div>
         </div>
         </HeroFade>
+
+        {/* Floating glass stat card */}
+        <Reveal index={5} scale={0.94} y={16} className="absolute bottom-[96px] right-10 hidden lg:block">
+          <div className="group w-[290px] rounded-2xl border border-warm-white/10 bg-black/45 p-5 shadow-lift backdrop-blur-xl transition-[transform,border-color] duration-[400ms] ease-spring hover:-translate-y-1 hover:border-gold/40">
+            <div className="flex items-center gap-3">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gold/15 text-gold transition-[background-color,color] duration-300 ease-spring group-hover:bg-gold group-hover:text-black">
+                <ServiceIcon slug="divisions" size={18} />
+              </span>
+              <div>
+                <span className="block text-[11px] tracking-[0.5px] text-concrete">Service divisions</span>
+                <span className="block font-heading text-[15px] font-bold text-warm-white">6 in-house divisions</span>
+              </div>
+            </div>
+            <p className="m-0 mt-3 text-xs leading-[1.6] text-concrete">Framing, construction, forming, project management, excavation and pre-construction — all under one roof.</p>
+          </div>
+        </Reveal>
 
         <div className="absolute bottom-[34px] left-0 right-0 flex flex-col items-center gap-2">
           <span className="text-[11px] tracking-[2px] text-concrete">SCROLL TO EXPLORE</span>
@@ -126,6 +164,9 @@ export default function Home() {
 
       {/* SERVICES */}
       <ServicesAccordion />
+
+      {/* ABOUT STRIP */}
+      <AboutStrip />
 
       {/* WHY US */}
       <section className="bg-black">

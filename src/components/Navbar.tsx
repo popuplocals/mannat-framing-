@@ -8,6 +8,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { EASE } from "@/lib/motion";
 import { SERVICES } from "@/lib/services";
 import ThemeToggle from "@/components/ThemeToggle";
+import ServiceIcon from "@/components/ServiceIcon";
 
 const links = [
   { href: "/", label: "Home" },
@@ -235,6 +236,13 @@ export default function Navbar() {
             </div>
 
             <div className="flex items-center gap-2 md:gap-3">
+              <a
+                href="tel:+17787238994"
+                className="hidden items-center gap-1.5 whitespace-nowrap text-[13px] text-ink transition-[color,transform] duration-300 ease-spring hover:-translate-y-0.5 hover:text-accent lg:flex"
+              >
+                <ServiceIcon slug="phone" size={13} className="text-accent" />
+                (778) 723-8994
+              </a>
               <ThemeToggle />
               <Link
                 href="/contact"
