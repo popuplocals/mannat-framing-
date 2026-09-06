@@ -13,10 +13,10 @@ import { useEffect, useRef } from "react";
  */
 
 const GOLD = "201,169,97";
-const DOT = "rgba(255,235,190,0.7)";
+const DOT = "rgba(255,235,190,0.85)";
 const STRUCTURES = 7;
 const ZONE = { x1: 0.22, x2: 0.78, y1: 0.14, y2: 0.86 };
-const ZONE_INSIDE = 0.22;
+const ZONE_INSIDE = 0.2; // 0.22 in the brief; lowered so two crossing lines at the glow centre still pass WCAG AA (gold 4.52:1)
 const ZONE_RAMP = 48;
 const CURSOR_RADIUS = 120;
 const GRID = 44;
@@ -159,7 +159,7 @@ export default function LivingBlueprint() {
     };
 
     const drawStructure = (s: Structure, progress: number, fade: number, live: boolean) => {
-      const base = 0.07 + s.depth * 0.14;
+      const base = 0.12 + s.depth * 0.22; // 12%–34%: stronger than the original 7%–21% at the client's request
       const px = live ? st.par.x * s.depth : 0, py = live ? st.par.y * s.depth : 0;
       const ox = s.x + px, oy = s.y + py;
       const drawnLen = progress * s.total;
