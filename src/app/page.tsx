@@ -9,6 +9,7 @@ import ServicesAccordion from "@/components/home/ServicesAccordion";
 import AboutStrip from "@/components/home/AboutStrip";
 import ProcessSection from "@/components/home/ProcessSection";
 import { HeroFade, HeroParallax } from "@/components/home/HeroMotion";
+import HeroSlideshow from "@/components/home/HeroSlideshow";
 import { SERVICES } from "@/lib/services";
 
 const stats = [
@@ -34,7 +35,7 @@ export default function Home() {
       {/* HERO */}
       <section className="relative flex min-h-[92vh] items-center overflow-hidden bg-black">
         <HeroParallax>
-          <Image src="/assets/hero-framing.jpg" alt="Timber framing under construction in Surrey, BC" fill priority sizes="100vw" className="object-cover" />
+          <HeroSlideshow />
         </HeroParallax>
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(95deg,#0D0D0D_28%,rgba(13,13,13,0.55)_55%,rgba(13,13,13,0.1)_100%)]" />
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/70 to-transparent" />
