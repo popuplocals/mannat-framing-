@@ -4,6 +4,7 @@ import CountUp from "@/components/CountUp";
 import CtaBand from "@/components/CtaBand";
 import Image from "next/image";
 import AboutHero from "@/components/about/AboutHero";
+import SawdustLight from "@/components/about/SawdustLight";
 
 export const metadata: Metadata = {
   title: "About Mannat Framing Ltd. | Framing Contractor Surrey BC",
@@ -62,7 +63,9 @@ export default function AboutPage() {
       </section>
 
       {/* VALUES */}
-      <section className="mf-grid-bg overflow-hidden bg-charcoal py-[120px]">
+      <section className="mf-grid-bg relative isolate overflow-hidden bg-charcoal py-[120px]">
+        {/* Decorative "sawdust in light" canvas: above the CSS grid, below the rows (see SawdustLight.tsx) */}
+        <SawdustLight />
         <Reveal className="mx-auto max-w-[1440px] px-5 md:px-10">
           <span className="font-mono text-xs font-medium tracking-[2.5px] text-gold">[ WHAT WE STAND FOR ]</span>
           <h2 className="m-0 mb-20 mt-5 max-w-[700px] font-heading text-[32px] font-extrabold leading-[1.22] text-warm-white">The Standard We Hold on Every Project.</h2>
