@@ -3,6 +3,7 @@ import PageHero from "@/components/PageHero";
 import CtaBand from "@/components/CtaBand";
 import ProjectsGallery from "@/components/projects/ProjectsGallery";
 import SiteMedia from "@/components/projects/SiteMedia";
+import CraneMotif from "@/components/CraneMotif";
 
 export const metadata: Metadata = {
   title: "Projects | Mannat Framing Ltd. — Surrey, BC",
@@ -20,6 +21,7 @@ export default function ProjectsPage() {
         heading="Building Quality. Delivering Results."
         highlightWords={["Results."]}
         subtitle="A glimpse into our recent framing and construction projects across the Lower Mainland — featured builds, site footage, and the full photo gallery."
+        aside={<CraneMotif />}
       />
       <ProjectsGallery />
       <SiteMedia />

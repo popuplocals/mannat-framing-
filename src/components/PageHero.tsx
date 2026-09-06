@@ -15,6 +15,8 @@ type PageHeroProps = {
   variant?: "light" | "dark";
   corner?: string;
   children?: React.ReactNode;
+  /** Decorative element rendered as a direct child of the hero section (e.g. an absolutely positioned canvas). */
+  aside?: React.ReactNode;
 };
 
 const EASE_CSS = "cubic-bezier(0.23, 1, 0.32, 1)";
@@ -29,6 +31,7 @@ export default function PageHero({
   variant = "dark",
   corner,
   children,
+  aside,
 }: PageHeroProps) {
   const [ref, visible] = useInView<HTMLDivElement>(0.15);
   const words = heading.split(" ");
@@ -47,7 +50,7 @@ export default function PageHero({
   return (
     <section
       ref={ref}
-      className={`relative overflow-hidden px-5 md:px-10 pt-[130px] pb-[90px] ${dark ? "bg-black" : "bg-surface"}`}
+      className={`relative isolate overflow-hidden px-5 md:px-10 pt-[130px] pb-[90px] ${dark ? "bg-black" : "bg-surface"}`}
     >
       {corner && (
         <>
@@ -133,6 +136,7 @@ export default function PageHero({
           </div>
         )}
       </div>
+      {aside}
     </section>
   );
 }
