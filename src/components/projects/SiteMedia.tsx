@@ -49,11 +49,11 @@ function VideoCard({ v, index, onOpen }: { v: (typeof SITE_VIDEOS)[number]; inde
       whileHover={{ y: -6 }}
       whileTap={{ scale: 0.98 }}
       transition={{ duration: 0.55, ease: EASE, delay: (index % 4) * 0.08 }}
-      className={`group relative block cursor-pointer overflow-hidden bg-charcoal text-left transition-shadow duration-[450ms] ease-spring hover:shadow-lift ${
-        landscape ? "aspect-video sm:col-span-2" : "aspect-[9/16] sm:row-span-2"
+      className={`group relative block w-full cursor-pointer overflow-hidden bg-charcoal text-left transition-shadow duration-[450ms] ease-spring hover:shadow-lift ${
+        landscape ? "aspect-video" : "aspect-[9/16]"
       }`}
     >
-      <Image src={v.poster} alt="" fill sizes="(min-width: 1024px) 25vw, 50vw" className={`object-cover transition-[opacity,transform] duration-[600ms] ease-spring group-hover:scale-[1.04] ${playing ? "opacity-0" : "opacity-100"}`} />
+      <Image src={v.poster} alt="" fill sizes="(min-width: 640px) 33vw, 100vw" className={`object-cover transition-[opacity,transform] duration-[600ms] ease-spring group-hover:scale-[1.04] ${playing ? "opacity-0" : "opacity-100"}`} />
       <video
         ref={ref}
         src={v.src}
@@ -98,10 +98,12 @@ export default function SiteMedia() {
             </div>
             <p className="m-0 max-w-[420px] text-sm leading-[1.7] text-concrete">Hover to preview, tap to watch. Short clips of framing, forming and site work as it happens across the Lower Mainland.</p>
           </motion.div>
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 sm:auto-rows-[minmax(0,1fr)]">
-            {SITE_VIDEOS.map((v, i) => (
-              <VideoCard key={v.src} v={v} index={i} onOpen={() => setOpenIndex(i)} />
-            ))}
+          {/* Vertical clips in one row, wide clips in the next — true aspect ratios, no gaps */}
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+            {SITE_VIDEOS.map((v, i) => (v.h > v.w ? <VideoCard key={v.src} v={v} index={i} onOpen={() => setOpenIndex(i)} /> : null))}
+          </div>
+          <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-3">
+            {SITE_VIDEOS.map((v, i) => (v.w >= v.h ? <VideoCard key={v.src} v={v} index={i} onOpen={() => setOpenIndex(i)} /> : null))}
           </div>
         </div>
       </section>
