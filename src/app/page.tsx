@@ -228,7 +228,7 @@ export default function Home() {
         </div>
       </section>
 
-      <CtaBand />
+      <CtaBand living />
 
       {/* Sticky mobile CTA */}
       <div className="fixed inset-x-0 bottom-0 z-40 border-t border-gold/30 bg-black px-5 py-[14px] md:hidden">

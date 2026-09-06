@@ -4,12 +4,14 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { EASE, viewportOnce } from "@/lib/motion";
 import ServiceIcon from "@/components/ServiceIcon";
+import LivingBlueprint from "@/components/LivingBlueprint";
 
 const PHONE = "(778) 723-8994";
 const PHONE_HREF = "tel:+17787238994";
 
-/** Closing call-to-action: dark band with a faint drafting grid, a warm gold glow and a gradient headline. */
-export default function CtaBand({ href = "/contact", label = "Request a Free Quote" }: { href?: string; label?: string }) {
+/** Closing call-to-action: dark band with a faint drafting grid, a warm gold glow and a gradient headline.
+ *  `living` adds the animated wireframe canvas behind the copy (homepage only). */
+export default function CtaBand({ href = "/contact", label = "Request a Free Quote", living = false }: { href?: string; label?: string; living?: boolean }) {
   return (
     <section className="relative overflow-hidden bg-black px-5 py-[110px] text-center md:px-10">
       <div aria-hidden="true" className="mf-grid-bg absolute inset-0 opacity-80" />
@@ -18,6 +20,7 @@ export default function CtaBand({ href = "/contact", label = "Request a Free Quo
         className="pointer-events-none absolute left-1/2 top-1/2 h-[560px] w-[900px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(197,164,109,0.22),rgba(197,164,109,0.06)_55%,transparent)] blur-2xl"
       />
       <div aria-hidden="true" className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent" />
+      {living && <LivingBlueprint />}
 
       <motion.div
         className="relative mx-auto max-w-[760px]"
