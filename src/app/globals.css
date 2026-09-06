@@ -89,6 +89,152 @@ body {
   }
 }
 
+/* ------------------------------------------------------------------
+   "How We Work" entrance animation (see components/home/ProcessSection.tsx)
+   Only opacity, transform and width are animated. `.is-in` is added once by
+   an IntersectionObserver; `.is-animating` scopes will-change to the run.
+   ------------------------------------------------------------------ */
+.mf-process .mf-process-item {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.mf-process.is-in .mf-process-item {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mf-process .mf-step {
+  opacity: 0;
+  transform: translateY(20px) scale(0.9);
+  transition: opacity 0.55s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.mf-process.is-in .mf-step {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Solid gold line drawn over the dashed guide */
+.mf-process .mf-track-h .mf-track-solid {
+  width: 0;
+  transition: width 1.4s cubic-bezier(0.4, 0, 0.2, 1) 0.4s;
+}
+.mf-process.is-in .mf-track-h .mf-track-solid {
+  width: 100%;
+}
+.mf-process .mf-track-v {
+  top: var(--v-start, 32px);
+  height: var(--v-len, 0px);
+}
+.mf-process .mf-track-v .mf-track-solid {
+  transform: scaleY(0);
+  transform-origin: top center;
+  transition: transform 1.4s cubic-bezier(0.4, 0, 0.2, 1) 0.4s;
+}
+.mf-process.is-in .mf-track-v .mf-track-solid {
+  transform: scaleY(1);
+}
+
+/* Spark that rides the line's leading edge and fades over the last 10% */
+.mf-process .mf-spark {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-gold);
+  box-shadow: 0 0 0 4px rgba(197, 164, 109, 0.2);
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+.mf-process.is-in .mf-track-h .mf-spark {
+  animation: mf-spark-h 1.4s cubic-bezier(0.4, 0, 0.2, 1) 0.4s forwards;
+}
+.mf-process.is-in .mf-track-v .mf-spark {
+  animation: mf-spark-v 1.4s cubic-bezier(0.4, 0, 0.2, 1) 0.4s forwards;
+}
+@keyframes mf-spark-h {
+  0% { opacity: 1; transform: translate(-50%, -50%); }
+  90% { opacity: 1; }
+  100% { opacity: 0; transform: translate(calc(var(--h-len, 0px) - 50%), -50%); }
+}
+@keyframes mf-spark-v {
+  0% { opacity: 1; transform: translate(-50%, -50%); }
+  90% { opacity: 1; }
+  100% { opacity: 0; transform: translate(-50%, calc(var(--v-len, 0px) - 50%)); }
+}
+
+/* Scope will-change to the entrance run only */
+.mf-process.is-animating .mf-process-item,
+.mf-process.is-animating .mf-step,
+.mf-process.is-animating .mf-track-solid,
+.mf-process.is-animating .mf-spark {
+  will-change: transform, opacity;
+}
+
+/* Hover (active once the entrance has played): border brightens, a faint ring expands 6px, icon darkens */
+.mf-process .mf-circle {
+  transition: border-color 0.3s ease-out;
+}
+.mf-process .mf-circle::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1.5px solid rgba(197, 164, 109, 0.3);
+  opacity: 0;
+  transform: scale(1);
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+  pointer-events: none;
+}
+.mf-process .mf-circle svg {
+  transition: stroke 0.3s ease-out;
+}
+.mf-process.is-in .mf-step:hover .mf-circle,
+.mf-process.is-in .mf-step:active .mf-circle {
+  border-color: var(--color-gold);
+}
+.mf-process.is-in .mf-step:hover .mf-circle::after,
+.mf-process.is-in .mf-step:active .mf-circle::after {
+  opacity: 1;
+  transform: scale(1.1875); /* 64px circle -> 76px ring = 6px outward */
+}
+.mf-process.is-in .mf-step:hover .mf-circle svg,
+.mf-process.is-in .mf-step:active .mf-circle svg {
+  stroke: #7a6039;
+}
+
+/* Stacked layout: text sits on the surface so the vertical line passes behind it */
+@media (max-width: 767px) {
+  .mf-process .mf-step-text {
+    background: var(--color-surface);
+    padding: 0 10px;
+  }
+}
+
+/* Reduced motion: everything visible immediately, no movement */
+@media (prefers-reduced-motion: reduce) {
+  .mf-process .mf-process-item,
+  .mf-process .mf-step {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .mf-process .mf-track-h .mf-track-solid {
+    width: 100%;
+    transition: none;
+  }
+  .mf-process .mf-track-v .mf-track-solid {
+    transform: none;
+    transition: none;
+  }
+  .mf-process .mf-spark {
+    display: none;
+  }
+}
+
 /* Map embed: keep it light in light mode, invert it into a dark basemap in dark mode. */
 .mf-map {
   filter: grayscale(0.35) sepia(0.12);

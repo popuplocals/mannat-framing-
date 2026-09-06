@@ -7,6 +7,7 @@ import Preloader from "@/components/Preloader";
 import ServiceIcon from "@/components/ServiceIcon";
 import ServicesAccordion from "@/components/home/ServicesAccordion";
 import AboutStrip from "@/components/home/AboutStrip";
+import ProcessSection from "@/components/home/ProcessSection";
 import { HeroFade, HeroParallax } from "@/components/home/HeroMotion";
 import { SERVICES } from "@/lib/services";
 
@@ -24,36 +25,6 @@ const whyPoints = [
   { t: "On-Time Delivery", d: "Our crews coordinate with your trades to keep the build moving — always on schedule." },
 ];
 
-const steps = [
-  {
-    t: "Pre-Construction",
-    d: "Goal alignment, scope review, budgeting and scheduling before crews arrive on site.",
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#927545" strokeWidth="1.5"><rect x="5" y="3" width="14" height="18" rx="1" /><path d="M9 3h6v2H9z" fill="#927545" stroke="none" /><path d="M8 10h8M8 14h8M8 18h5" /></svg>
-    ),
-  },
-  {
-    t: "Site Preparation",
-    d: "Excavation, grading and earthwork completed and inspected before framing begins.",
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#927545" strokeWidth="1.5"><path d="M4 20h16" /><path d="M6 20V9l6-4 6 4v11" /><path d="M10 20v-6h4v6" /></svg>
-    ),
-  },
-  {
-    t: "Build Phase",
-    d: "Forming, framing and trades coordination supervised by experienced project managers.",
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#927545" strokeWidth="1.5"><path d="M3 21l7-7" /><path d="M9 15l2-6 8 8-6 2z" /><path d="M13 5l2 2" /><path d="M16 3l2 2" /></svg>
-    ),
-  },
-  {
-    t: "Handover",
-    d: "Final walk-through, deficiency review and a clean completed project handed to the client.",
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#927545" strokeWidth="1.5"><path d="M8 12l-4 1 1 4" /><path d="M4 13c2 3 5 5 8 5s6-2 8-5" /><path d="M16 12l4 1-1 4" /><circle cx="12" cy="7" r="3" /></svg>
-    ),
-  },
-];
 
 export default function Home() {
   return (
@@ -215,28 +186,7 @@ export default function Home() {
       </section>
 
       {/* PROCESS */}
-      <section className="bg-surface px-5 py-[100px] md:px-10">
-        <div className="mx-auto max-w-[1440px]">
-          <Reveal>
-            <span className="text-xs font-medium tracking-[2.5px] text-accent">HOW WE WORK</span>
-            <h2 className="m-0 mb-[14px] mt-5 max-w-[600px] font-heading text-[32px] font-extrabold leading-[1.22] text-ink">A Clear Process, Plan to Handover.</h2>
-            <p className="m-0 mb-16 max-w-[520px] text-sm text-ink-2">Each engagement follows the same four phases so clients know what to expect at every stage.</p>
-          </Reveal>
-          <div className="relative grid grid-cols-1 gap-9 sm:grid-cols-2 sm:gap-7 lg:grid-cols-4">
-            <div aria-hidden="true" className="absolute left-[6%] right-[6%] top-8 hidden h-px bg-[repeating-linear-gradient(90deg,#C5A46D_0_8px,transparent_8px_16px)] lg:block" />
-            {steps.map((s, i) => (
-              <Reveal key={s.t} index={i} className="group relative z-[1] text-center">
-                <div className="mx-auto mb-[18px] flex h-16 w-16 items-center justify-center rounded-full border border-gold/50 bg-surface transition-[border-color,transform,box-shadow] duration-[400ms] ease-spring group-hover:scale-110 group-hover:border-gold group-hover:shadow-card">
-                  {s.icon}
-                </div>
-                <div className="mb-2 font-heading text-[13px] font-bold text-gold">0{i + 1}</div>
-                <div className="mb-2 font-heading text-[15px] font-bold">{s.t}</div>
-                <div className="mx-auto max-w-[190px] text-xs leading-[1.6] text-ink-2">{s.d}</div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
+      <ProcessSection />
 
       {/* PROJECTS TEASER */}
       <section className="bg-black px-5 py-[100px] md:px-10">
