@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { EASE } from "@/lib/motion";
-import Image from "next/image";
+import HeroSlideshow from "@/components/about/HeroSlideshow";
 import IsoFrame from "@/components/about/IsoFrame";
 
 const EASE_CSS = "cubic-bezier(0.23, 1, 0.32, 1)";
@@ -72,8 +72,8 @@ export default function AboutHero() {
           animate={{ opacity: 1, clipPath: "polygon(12% 0,100% 0,100% 100%,0 100%)" }}
           transition={{ duration: 1, ease: EASE, delay: 0.2 }}
         >
-          <div className="mf-kenburns absolute inset-0">
-            <Image src="/assets/photos/about-hero-beams.jpg" alt="Beams and joists on a Mannat Framing job site" fill priority sizes="(min-width: 768px) 45vw, 100vw" className="object-cover" />
+          <div className="absolute inset-0">
+            <HeroSlideshow />
           </div>
           <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(200deg,rgba(13,13,13,0.05)_0%,rgba(13,13,13,0)_35%,rgba(13,13,13,0.55)_100%)]" />
           <span className="absolute bottom-[26px] left-[calc(12%+24px)] z-[3] font-mono text-[11px] tracking-[1px] text-gold">FIG. 01</span>

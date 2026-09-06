@@ -4,9 +4,9 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 
 const SLIDES: { src: string; alt: string }[] = [
-  { src: "/assets/hero-framing.jpg", alt: "Timber framing under construction in Surrey, BC" },
-  { src: "/assets/photos/teaser-townhouse-row.jpg", alt: "Row of framed townhouses on a Mannat Framing site" },
+  { src: "/assets/photos/about-hero-beams.jpg", alt: "Beams and joists on a Mannat Framing job site" },
   { src: "/assets/photos/svc-framing-trusses.jpg", alt: "Roof trusses set on a framed building" },
+  { src: "/assets/photos/teaser-townhouse-row.jpg", alt: "Row of framed townhouses on a Mannat Framing site" },
   { src: "/assets/photos/proj-custom-home.jpg", alt: "Two-storey home fully framed" },
   { src: "/assets/photos/svc-general-construction.jpg", alt: "Five-storey wood-frame building under construction" },
 ];
@@ -15,7 +15,7 @@ const INTERVAL_MS = 3000;
 const FADE_MS = 1100;
 
 /**
- * Hero background slideshow: crossfades to the next job-site photo every 3 seconds with a slow
+ * About hero photo slideshow: crossfades to the next job-site photo every 3 seconds with a slow
  * Ken Burns drift on the active slide. Pauses while the tab is hidden; under reduced motion it
  * still crossfades (no movement) so the rotation is kept.
  */
