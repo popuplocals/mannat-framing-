@@ -238,12 +238,11 @@ export default function Navbar() {
               <ThemeToggle />
               <Link
                 href="/contact"
-                className={`whitespace-nowrap border border-gold text-xs tracking-[0.3px] text-ink transition-[background-color,color,transform,border-radius,padding] duration-[450ms] ease-spring hover:scale-[1.03] hover:bg-gold hover:text-black active:scale-[0.98] active:bg-gold active:text-black md:text-[13px] ${
+                className={`hidden whitespace-nowrap border border-gold text-xs tracking-[0.3px] text-ink transition-[background-color,color,transform,border-radius,padding] md:inline-block duration-[450ms] ease-spring hover:scale-[1.03] hover:bg-gold hover:text-black active:scale-[0.98] active:bg-gold active:text-black md:text-[13px] ${
                   scrolled ? "rounded-full px-4 py-2 md:px-5 md:py-[9px]" : "rounded-full px-[14px] py-[9px] md:px-[22px] md:py-[11px]"
                 }`}
               >
-                <span className="hidden sm:inline">Get a Free Quote &rarr;</span>
-                <span className="sm:hidden">Quote &rarr;</span>
+                Get a Free Quote &rarr;
               </Link>
               <button
                 type="button"
@@ -338,6 +337,19 @@ export default function Navbar() {
                       </motion.div>
                     );
                   })}
+                  <motion.div
+                    initial={{ opacity: 0, y: 6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, ease: EASE, delay: 0.05 + links.length * 0.05 }}
+                    className="mt-2 px-1 pb-1"
+                  >
+                    <Link
+                      href="/contact"
+                      className="flex items-center justify-center gap-2 rounded-full bg-gold px-5 py-3 font-heading text-sm font-bold text-black shadow-[0_12px_30px_-12px_rgba(197,164,109,0.7)] transition-transform duration-300 ease-spring active:scale-[0.98]"
+                    >
+                      Get a Free Quote <span aria-hidden="true">&rarr;</span>
+                    </Link>
+                  </motion.div>
                 </div>
               </motion.div>
             )}
