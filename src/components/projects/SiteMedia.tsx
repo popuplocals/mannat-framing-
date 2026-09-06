@@ -10,8 +10,23 @@ import Lightbox, { type LightboxItem } from "@/components/projects/Lightbox";
 const videoItems: LightboxItem[] = SITE_VIDEOS.map((v, i) => ({ kind: "video", src: v.src, poster: v.poster, w: v.w, h: v.h, alt: `Mannat Framing site video ${i + 1}` }));
 const photoItems: LightboxItem[] = GALLERY_PHOTOS.map((p) => ({ kind: "image", src: p.src, w: p.w, h: p.h, alt: p.alt }));
 const allItems: LightboxItem[] = [...videoItems, ...photoItems];
-// First landscape photo becomes the double-width tile that makes the gallery grid tile perfectly.
-const FEATURED_PHOTO = Math.max(0, GALLERY_PHOTOS.findIndex((p) => p.w >= p.h));
+/**
+ * Self-balancing grid: for each breakpoint (2 / 3 / 4 columns) we widen just enough
+ * landscape photos to double-width so the photo count fills whole rows — no ragged
+ * bottom edge whatever the count. Classes are literal so Tailwind can see them.
+ */
+const SPAN = {
+  base: ["col-span-1", "col-span-2"],
+  md: ["md:col-span-1", "md:col-span-2"],
+  lg: ["lg:col-span-1", "lg:col-span-2"],
+} as const;
+const landscapeIdx = GALLERY_PHOTOS.map((p, i) => (p.w >= p.h ? i : -1)).filter((i) => i >= 0);
+const need = (cols: number) => (cols - (GALLERY_PHOTOS.length % cols)) % cols; // extra cells required
+const spanClass = (i: number) => {
+  const rank = landscapeIdx.indexOf(i); // -1 for portrait photos
+  const wide = (cols: number) => rank >= 0 && rank < need(cols);
+  return `${SPAN.base[wide(2) ? 1 : 0]} ${SPAN.md[wide(3) ? 1 : 0]} ${SPAN.lg[wide(4) ? 1 : 0]}`;
+};
 
 const PlayIcon = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
@@ -124,7 +139,7 @@ export default function SiteMedia() {
               {GALLERY_PHOTOS.length} photos from foundations and formwork to trusses and handover. Tap any photo to view it full size.
             </p>
           </motion.div>
-          {/* Justified grid: uniform tiles + one double-width feature so 47 photos fill 48 cells on 2, 3 and 4 columns (flush bottom). */}
+          {/* Justified grid: uniform tiles; a few landscape photos widen per breakpoint so every row is full (see spanClass). */}
           <div className="grid grid-cols-2 gap-4 auto-rows-[200px] sm:auto-rows-[240px] md:grid-cols-3 lg:grid-cols-4 lg:auto-rows-[300px] [grid-auto-flow:dense]">
             {GALLERY_PHOTOS.map((p, i) => (
               <motion.button
@@ -138,9 +153,7 @@ export default function SiteMedia() {
                 whileHover={{ y: -4 }}
                 whileTap={{ scale: 0.98 }}
                 transition={{ duration: 0.5, ease: EASE, delay: (i % 4) * 0.06 }}
-                className={`group relative block h-full w-full cursor-pointer overflow-hidden bg-charcoal transition-shadow duration-[450ms] ease-spring hover:shadow-lift ${
-                  i === FEATURED_PHOTO ? "col-span-2" : ""
-                }`}
+                className={`group relative block h-full w-full cursor-pointer overflow-hidden bg-charcoal transition-shadow duration-[450ms] ease-spring hover:shadow-lift ${spanClass(i)}`}
               >
                 <Image src={p.src} alt={p.alt} fill sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw" className="object-cover transition-transform duration-[600ms] ease-spring group-hover:scale-[1.05]" />
                 <span className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,rgba(13,13,13,0.55)_0%,rgba(13,13,13,0)_50%)] opacity-0 transition-opacity duration-[400ms] ease-spring group-hover:opacity-100" />
