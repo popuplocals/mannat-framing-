@@ -357,32 +357,12 @@ body {
 .mf-splash-glow {
   animation: mf-splash-fade 1.6s cubic-bezier(0.23, 1, 0.32, 1) 0.2s both;
 }
-@keyframes mf-splash-spin {
-  from { transform: translate(-50%, -50%) rotate(0deg); }
-  to { transform: translate(-50%, -50%) rotate(360deg); }
-}
-.mf-splash-spin {
-  /* gold arc that runs around the ring in the artwork (centred via transform, not Tailwind translate) */
-  transform: translate(-50%, -50%);
-  background: conic-gradient(from 0deg, transparent 0 60%, rgba(197, 164, 109, 0.3) 74%, #E6D3AE 100%);
-  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2.4px));
-  mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2.4px));
-  animation: mf-splash-fade 0.6s cubic-bezier(0.23, 1, 0.32, 1) 0.8s both, mf-splash-spin 1.15s linear infinite;
-}
 /* Only sessions that have not seen the splash get it (class set by the inline script in layout.tsx) */
 html:not(.mf-splash) .mf-splash-overlay {
   display: none;
 }
-@keyframes mf-splash-caption {
-  0%, 100% { opacity: 0.45; }
-  50% { opacity: 1; }
-}
-.mf-splash-caption {
-  animation: mf-splash-fade 0.6s cubic-bezier(0.23, 1, 0.32, 1) 0.9s both, mf-splash-caption 1.6s ease-in-out 1.5s infinite;
-}
 @media (prefers-reduced-motion: reduce) {
-  .mf-splash-art, .mf-splash-glow, .mf-splash-caption { animation: none; opacity: 1; }
-  .mf-splash-spin { animation: mf-splash-spin 1.15s linear infinite; }
+  .mf-splash-art, .mf-splash-glow { animation: none; opacity: 1; }
 }
 
 @keyframes mf-preload-line {
