@@ -45,8 +45,8 @@ export default function Preloader() {
         leaving ? "pointer-events-none invisible scale-[1.03] opacity-0" : "opacity-100"
       }`}
     >
-      {/* artwork box: 1064 x 856 source (true-black background); edges feathered so JPEG noise never shows a rectangle */}
-      <div className="mf-splash-art relative aspect-[1064/856] w-[min(88vw,70vh,720px)] shrink-0 [mask-image:radial-gradient(ellipse_at_50%_50%,#000_60%,transparent_88%)] [-webkit-mask-image:radial-gradient(ellipse_at_50%_50%,#000_60%,transparent_88%)]">
+      {/* artwork box: 1064 x 856 source with a true-black background, so it sits seamlessly on the overlay without masking */}
+      <div className="mf-splash-art relative aspect-[1064/856] w-[min(88vw,70vh,720px)] shrink-0">
         <Image src="/assets/brand/splash-logo.jpg" alt="" fill priority sizes="(max-width: 768px) 88vw, 720px" className="object-contain" />
       </div>
 
