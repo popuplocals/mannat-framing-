@@ -343,19 +343,19 @@ body {
 
 /* Brand splash (components/Preloader.tsx) */
 @keyframes mf-splash-in {
-  0% { opacity: 0; transform: scale(0.9) translateY(12px); filter: blur(10px); }
-  60% { filter: blur(0); }
-  100% { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
+  from { opacity: 0; transform: scale(0.92) translateY(10px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
 }
 @keyframes mf-splash-fade {
   from { opacity: 0; }
   to { opacity: 1; }
 }
+/* Opacity + transform only (no blur filter): stays on the compositor, so it is smooth on phones too */
 .mf-splash-art {
-  animation: mf-splash-in 1.4s cubic-bezier(0.23, 1, 0.32, 1) both;
+  animation: mf-splash-in 1.7s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 .mf-splash-glow {
-  animation: mf-splash-fade 1.6s cubic-bezier(0.23, 1, 0.32, 1) 0.2s both;
+  animation: mf-splash-fade 2s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
 }
 /* Only sessions that have not seen the splash get it (class set by the inline script in layout.tsx) */
 html:not(.mf-splash) .mf-splash-overlay {

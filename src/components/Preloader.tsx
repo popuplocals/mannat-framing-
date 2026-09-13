@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
-const HOLD_MS = 2200; // how long the splash stays fully visible
-const FADE_MS = 750;
+const HOLD_MS = 2300; // how long the splash stays fully visible
+const FADE_MS = 900;
 
 /**
  * Brand splash shown once per session on the first page a visitor opens: just the logo artwork,
@@ -41,12 +41,12 @@ export default function Preloader() {
   return (
     <div
       aria-hidden="true"
-      className={`mf-splash-overlay fixed inset-0 z-[10000] flex items-center justify-center overflow-hidden bg-[#000000] transition-[opacity,visibility,transform] duration-[750ms] ease-spring ${
-        leaving ? "pointer-events-none invisible scale-[1.03] opacity-0" : "opacity-100"
+      className={`mf-splash-overlay fixed inset-0 z-[10000] flex items-center justify-center overflow-hidden bg-[#000000] transition-[opacity,visibility,transform] duration-[900ms] ease-[cubic-bezier(0.4,0,0.2,1)] ${
+        leaving ? "pointer-events-none invisible scale-[1.02] opacity-0" : "opacity-100"
       }`}
     >
       {/* artwork box: 1064 x 856 source with a true-black background, so it sits seamlessly on the overlay without masking */}
-      <div className="mf-splash-art relative aspect-[1064/856] w-[min(88vw,70vh,720px)] shrink-0">
+      <div className="mf-splash-art relative aspect-[1064/856] w-[min(68vw,46vh,460px)] shrink-0 will-change-[transform,opacity]">
         <Image src="/assets/brand/splash-logo.jpg" alt="" fill priority sizes="(max-width: 768px) 88vw, 720px" className="object-contain" />
       </div>
 
